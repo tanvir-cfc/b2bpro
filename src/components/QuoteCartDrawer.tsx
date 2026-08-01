@@ -170,7 +170,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                         <img 
                           src={item.product.image} 
                           alt={item.product.name} 
-                          className="w-12 h-12 object-cover rounded-lg border border-gray-200"
+                          className="w-12 h-12 object-contain rounded-lg border border-gray-200 bg-white p-0.5 shrink-0"
                         />
                         <div>
                           <p className="font-extrabold text-[#013b22] uppercase leading-tight">{item.product.name}</p>

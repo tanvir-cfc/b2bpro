@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+@layer base {
+  button,
+  [role="button"],
+  a,
+  select,
+  summary,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: pointer;
+  }
+}
+
+/* Universal cursor pointer fallback for interactive controls */
+button,
+select,
+a,
+[role="button"] {
+  cursor: pointer !important;
+}
+

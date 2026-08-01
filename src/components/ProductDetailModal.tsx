@@ -73,11 +73,11 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
           
           {/* Left Column - Image & Packaging Preview */}
           <div className="lg:col-span-5 space-y-4">
-            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center relative">
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center relative flex items-center justify-center min-h-[260px]">
               <img 
                 src={product.image} 
                 alt={product.name} 
-                className="max-h-64 object-cover rounded-xl mx-auto shadow-md"
+                className="max-h-60 max-w-full object-contain rounded-xl mx-auto drop-shadow-md"
               />
               <span className="absolute bottom-3 right-3 bg-white/90 text-[#013b22] text-xs font-bold px-2.5 py-1 rounded-lg border border-gray-200 shadow-sm">
                 Code EAN: {product.ean}

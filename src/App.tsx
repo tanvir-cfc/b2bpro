@@ -14,8 +14,9 @@ import { QuoteCartDrawer } from './components/QuoteCartDrawer';
 import { AdminDashboard } from './components/AdminDashboard';
 import { ProLoginModal } from './components/ProLoginModal';
 import { Footer } from './components/Footer';
+import { LanguageProvider } from './context/LanguageContext';
 
-export default function App() {
+function AppContent() {
   const [activeTab, setActiveTab] = useState('accueil');
   const [products, setProducts] = useState<Product[]>(() => {
     const saved = localStorage.getItem('sentollbi_products_v3');
@@ -214,5 +215,13 @@ export default function App() {
       />
 
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   );
 }

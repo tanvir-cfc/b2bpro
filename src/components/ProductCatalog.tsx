@@ -158,11 +158,11 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                   </span>
 
                   {/* Image */}
-                  <div className="w-full h-44 overflow-hidden rounded-xl flex items-center justify-center bg-white border border-gray-100 shadow-inner">
+                  <div className="w-full h-48 rounded-xl flex items-center justify-center bg-white border border-gray-100 shadow-xs p-2">
                     <img 
                       src={product.image} 
                       alt={product.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 </div>
