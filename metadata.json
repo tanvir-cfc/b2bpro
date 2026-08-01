@@ -1,0 +1,6 @@
+{
+  "name": "SenToll Bi - Grossiste Produits Africains Premium",
+  "description": "Plateforme B2B et catalogue grossiste de produits africains authentiques pour la France et l'Europe.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
