@@ -45,7 +45,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
   const totalEstimatedAmount = cartItems.reduce((sum, item) => {
     const totalUnits = item.cartonsCount * item.product.unitsPerCarton;
     const tier = item.product.tieredPricing.find(
-      (t) => totalUnits >= t.minQty && (t.maxQty === null || totalUnits <= t.maxQty)
+      (t) => item.cartonsCount >= t.minQty && (t.maxQty === null || item.cartonsCount <= t.maxQty)
     ) || item.product.tieredPricing[0];
     return sum + (totalUnits * tier.pricePerUnit);
   }, 0);
@@ -70,7 +70,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
       items: cartItems.map((item) => {
         const totalUnits = item.cartonsCount * item.product.unitsPerCarton;
         const tier = item.product.tieredPricing.find(
-          (t) => totalUnits >= t.minQty && (t.maxQty === null || totalUnits <= t.maxQty)
+          (t) => item.cartonsCount >= t.minQty && (t.maxQty === null || item.cartonsCount <= t.maxQty)
         ) || item.product.tieredPricing[0];
         return {
           productId: item.product.id,
@@ -157,7 +157,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                 {cartItems.map((item) => {
                   const totalUnits = item.cartonsCount * item.product.unitsPerCarton;
                   const tier = item.product.tieredPricing.find(
-                    (t) => totalUnits >= t.minQty && (t.maxQty === null || totalUnits <= t.maxQty)
+                    (t) => item.cartonsCount >= t.minQty && (t.maxQty === null || item.cartonsCount <= t.maxQty)
                   ) || item.product.tieredPricing[0];
                   const lineTotal = totalUnits * tier.pricePerUnit;
 

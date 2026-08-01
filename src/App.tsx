@@ -18,7 +18,7 @@ import { Footer } from './components/Footer';
 export default function App() {
   const [activeTab, setActiveTab] = useState('accueil');
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('sentollbi_products_v2');
+    const saved = localStorage.getItem('sentollbi_products_v3');
     return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
   });
 
@@ -39,7 +39,7 @@ export default function App() {
 
   // Sync state to local persistence
   useEffect(() => {
-    localStorage.setItem('sentollbi_products_v2', JSON.stringify(products));
+    localStorage.setItem('sentollbi_products_v3', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {

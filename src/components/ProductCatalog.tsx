@@ -189,7 +189,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
                     <div className="space-y-0.5 font-medium text-[11px]">
                       {product.tieredPricing.map((tier, idx) => {
-                        const isApplicable = totalUnits >= tier.minQty && (tier.maxQty === null || totalUnits <= tier.maxQty);
+                        const isApplicable = currentCartons >= tier.minQty && (tier.maxQty === null || currentCartons <= tier.maxQty);
                         return (
                           <div 
                             key={idx} 

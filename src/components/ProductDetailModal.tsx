@@ -37,7 +37,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 
   // Find price tier
   const matchedTier = product.tieredPricing.find(
-    (tier) => totalUnits >= tier.minQty && (tier.maxQty === null || totalUnits <= tier.maxQty)
+    (tier) => cartons >= tier.minQty && (tier.maxQty === null || cartons <= tier.maxQty)
   ) || product.tieredPricing[0];
 
   const currentUnitPrice = matchedTier.pricePerUnit;

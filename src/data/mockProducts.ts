@@ -39,10 +39,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     stockInCartons: 180,
     minOrderCartons: 1,
     tieredPricing: [
-      { minQty: 10, maxQty: 29, pricePerUnit: 6.90, label: '10 - 29 pots' },
-      { minQty: 30, maxQty: 59, pricePerUnit: 6.40, label: '30 - 59 pots' },
-      { minQty: 60, maxQty: 119, pricePerUnit: 5.90, label: '60 - 119 pots' },
-      { minQty: 120, maxQty: null, pricePerUnit: 5.40, label: '120+ pots' }
+      { minQty: 1, maxQty: 29, pricePerUnit: 6.90, label: '1 - 29 cartons' },
+      { minQty: 30, maxQty: 59, pricePerUnit: 6.40, label: '30 - 59 cartons' },
+      { minQty: 60, maxQty: 119, pricePerUnit: 5.90, label: '60 - 119 cartons' },
+      { minQty: 120, maxQty: null, pricePerUnit: 5.40, label: '120+ cartons' }
     ],
     nutrition: {
       energy: '357 Kcal',
@@ -83,10 +83,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     stockInCartons: 140,
     minOrderCartons: 1,
     tieredPricing: [
-      { minQty: 10, maxQty: 29, pricePerUnit: 6.20, label: '10 - 29 sachets' },
-      { minQty: 30, maxQty: 59, pricePerUnit: 5.70, label: '30 - 59 sachets' },
-      { minQty: 60, maxQty: 119, pricePerUnit: 5.20, label: '60 - 119 sachets' },
-      { minQty: 120, maxQty: null, pricePerUnit: 4.80, label: '120+ sachets' }
+      { minQty: 1, maxQty: 29, pricePerUnit: 6.20, label: '1 - 29 cartons' },
+      { minQty: 30, maxQty: 59, pricePerUnit: 5.70, label: '30 - 59 cartons' },
+      { minQty: 60, maxQty: 119, pricePerUnit: 5.20, label: '60 - 119 cartons' },
+      { minQty: 120, maxQty: null, pricePerUnit: 4.80, label: '120+ cartons' }
     ],
     nutrition: {
       energy: '230 Kcal',
@@ -126,10 +126,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     stockInCartons: 150,
     minOrderCartons: 1,
     tieredPricing: [
-      { minQty: 10, maxQty: 29, pricePerUnit: 5.50, label: '10 - 29 sachets' },
-      { minQty: 30, maxQty: 59, pricePerUnit: 5.00, label: '30 - 59 sachets' },
-      { minQty: 60, maxQty: 119, pricePerUnit: 4.50, label: '60 - 119 sachets' },
-      { minQty: 120, maxQty: null, pricePerUnit: 4.00, label: '120+ sachets' }
+      { minQty: 1, maxQty: 29, pricePerUnit: 5.50, label: '1 - 29 cartons' },
+      { minQty: 30, maxQty: 59, pricePerUnit: 5.00, label: '30 - 59 cartons' },
+      { minQty: 60, maxQty: 119, pricePerUnit: 4.50, label: '60 - 119 cartons' },
+      { minQty: 120, maxQty: null, pricePerUnit: 4.00, label: '120+ cartons' }
     ],
     nutrition: {
       energy: '245 Kcal',
@@ -169,10 +169,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     stockInCartons: 250,
     minOrderCartons: 1,
     tieredPricing: [
-      { minQty: 10, maxQty: 29, pricePerUnit: 3.90, label: '10 - 29 sachets' },
-      { minQty: 30, maxQty: 59, pricePerUnit: 3.50, label: '30 - 59 sachets' },
-      { minQty: 60, maxQty: 119, pricePerUnit: 3.10, label: '60 - 119 sachets' },
-      { minQty: 120, maxQty: null, pricePerUnit: 2.70, label: '120+ sachets' }
+      { minQty: 1, maxQty: 29, pricePerUnit: 3.90, label: '1 - 29 cartons' },
+      { minQty: 30, maxQty: 59, pricePerUnit: 3.50, label: '30 - 59 cartons' },
+      { minQty: 60, maxQty: 119, pricePerUnit: 3.10, label: '60 - 119 cartons' },
+      { minQty: 120, maxQty: null, pricePerUnit: 2.70, label: '120+ cartons' }
     ],
     nutrition: {
       energy: '512 Kcal',
@@ -212,10 +212,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     stockInCartons: 210,
     minOrderCartons: 1,
     tieredPricing: [
-      { minQty: 10, maxQty: 29, pricePerUnit: 5.80, label: '10 - 29 pots' },
-      { minQty: 30, maxQty: 59, pricePerUnit: 5.40, label: '30 - 59 pots' },
-      { minQty: 60, maxQty: 119, pricePerUnit: 4.90, label: '60 - 119 pots' },
-      { minQty: 120, maxQty: null, pricePerUnit: 4.50, label: '120+ pots' }
+      { minQty: 1, maxQty: 29, pricePerUnit: 5.80, label: '1 - 29 cartons' },
+      { minQty: 30, maxQty: 59, pricePerUnit: 5.40, label: '30 - 59 cartons' },
+      { minQty: 60, maxQty: 119, pricePerUnit: 4.90, label: '60 - 119 cartons' },
+      { minQty: 120, maxQty: null, pricePerUnit: 4.50, label: '120+ cartons' }
     ],
     nutrition: {
       energy: '280 Kcal',
@@ -255,10 +255,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     stockInCartons: 320,
     minOrderCartons: 1,
     tieredPricing: [
-      { minQty: 10, maxQty: 29, pricePerUnit: 4.90, label: '10 - 29 sachets' },
-      { minQty: 30, maxQty: 59, pricePerUnit: 4.50, label: '30 - 59 sachets' },
-      { minQty: 60, maxQty: 119, pricePerUnit: 4.10, label: '60 - 119 sachets' },
-      { minQty: 120, maxQty: null, pricePerUnit: 3.70, label: '120+ sachets' }
+      { minQty: 1, maxQty: 29, pricePerUnit: 4.90, label: '1 - 29 cartons' },
+      { minQty: 30, maxQty: 59, pricePerUnit: 4.50, label: '30 - 59 cartons' },
+      { minQty: 60, maxQty: 119, pricePerUnit: 4.10, label: '60 - 119 cartons' },
+      { minQty: 120, maxQty: null, pricePerUnit: 3.70, label: '120+ cartons' }
     ],
     nutrition: {
       energy: '319 Kcal',
