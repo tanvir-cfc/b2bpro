@@ -11,12 +11,16 @@ import {
   Award, 
   Check 
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import { Logo } from './Logo';
 
 interface FooterProps {
   onNavigate: (tab: string) => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-[#022c19] text-white pt-12 pb-6 border-t border-emerald-900 font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-10">
@@ -25,19 +29,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Column 1: Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex flex-col">
-              <div className="flex items-center text-2xl font-black tracking-tight leading-none">
-                <span className="text-[#ea580c]">Sen</span>
-                <span className="text-white ml-0.5">Toll</span>
-                <span className="text-[#22c55e] font-black ml-1">Bi</span>
-              </div>
-              <span className="text-[9px] uppercase tracking-[0.25em] font-black text-amber-400 mt-1">
-                SAVEURS D'AFRIQUE
-              </span>
-            </div>
+            <button 
+              type="button" 
+              onClick={() => onNavigate('accueil')}
+              className="text-left cursor-pointer focus:outline-none"
+            >
+              <Logo size="md" variant="white" />
+            </button>
 
             <p className="text-emerald-100/80 leading-relaxed max-w-sm">
-              Votre partenaire de confiance pour l'importation et la distribution en gros de produits africains authentiques, sains et certifiés en France et dans toute l'Europe.
+              {t('footerBrandDesc')}
             </p>
 
             {/* Social icons */}
@@ -57,15 +58,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Column 2: Quick links */}
           <div className="space-y-3">
             <h3 className="font-extrabold uppercase text-amber-400 tracking-wider text-[11px]">
-              LIENS RAPIDES
+              {t('quickLinks')}
             </h3>
             <ul className="space-y-2 text-emerald-100/90 font-medium">
-              <li><button onClick={() => onNavigate('accueil')} className="hover:text-amber-300 transition-colors">Accueil</button></li>
-              <li><button onClick={() => onNavigate('catalogue')} className="hover:text-amber-300 transition-colors">Catalogue B2B</button></li>
-              <li><button onClick={() => onNavigate('marques')} className="hover:text-amber-300 transition-colors">Nos Marques & MDD</button></li>
-              <li><button onClick={() => onNavigate('importation')} className="hover:text-amber-300 transition-colors">Importation Directe</button></li>
-              <li><button onClick={() => onNavigate('distributeur')} className="hover:text-amber-300 transition-colors">Devenir Distributeur</button></li>
-              <li><button onClick={() => onNavigate('ressources')} className="hover:text-amber-300 transition-colors">Logistique & Fiches</button></li>
+              <li><button type="button" onClick={() => onNavigate('accueil')} className="hover:text-amber-300 transition-colors cursor-pointer">{t('navAccueil')}</button></li>
+              <li><button type="button" onClick={() => onNavigate('catalogue')} className="hover:text-amber-300 transition-colors cursor-pointer">{t('navCatalogue')}</button></li>
+              <li><button type="button" onClick={() => onNavigate('marques')} className="hover:text-amber-300 transition-colors cursor-pointer">{t('navMarques')}</button></li>
+              <li><button type="button" onClick={() => onNavigate('importation')} className="hover:text-amber-300 transition-colors cursor-pointer">{t('navImportation')}</button></li>
+              <li><button type="button" onClick={() => onNavigate('distributeur')} className="hover:text-amber-300 transition-colors cursor-pointer">{t('navDistributeur')}</button></li>
+              <li><button type="button" onClick={() => onNavigate('ressources')} className="hover:text-amber-300 transition-colors cursor-pointer">{t('navRessources')}</button></li>
             </ul>
           </div>
 
@@ -75,10 +76,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               INFORMATIONS
             </h3>
             <ul className="space-y-2 text-emerald-100/90 font-medium">
-              <li><a href="#cgv" className="hover:text-amber-300 transition-colors">Conditions Générales de Vente B2B</a></li>
-              <li><a href="#privacy" className="hover:text-amber-300 transition-colors">Politique de Confidentialité</a></li>
-              <li><a href="#mentions" className="hover:text-amber-300 transition-colors">Mentions Légales</a></li>
-              <li><a href="#faq" className="hover:text-amber-300 transition-colors">FAQ Grossistes</a></li>
+              <li><a href="#cgv" className="hover:text-amber-300 transition-colors">{t('cgvB2b')}</a></li>
+              <li><a href="#privacy" className="hover:text-amber-300 transition-colors">{t('privacyPolicy')}</a></li>
+              <li><a href="#mentions" className="hover:text-amber-300 transition-colors">{t('legalNotice')}</a></li>
+              <li><a href="#faq" className="hover:text-amber-300 transition-colors">{t('faqB2b')}</a></li>
             </ul>
           </div>
 
@@ -112,7 +113,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Bottom copyright */}
         <div className="pt-6 border-t border-emerald-900/80 text-center text-[11px] text-emerald-300/80 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p>© 2026 SenToll Bi. Tous droits réservés. Site réservé aux professionnels.</p>
+          <p>{t('copyright')}</p>
           <p className="text-[10px] text-emerald-400 font-medium">
             Plateforme Grossiste B2B - Import Direct Sénégal & Afrique de l'Ouest
           </p>

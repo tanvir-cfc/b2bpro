@@ -3,16 +3,15 @@ import { QuoteItem, QuoteRequest } from '../types';
 import { 
   X, 
   Trash2, 
-  FileText, 
   Printer, 
   Check, 
   ShoppingBag, 
   Package, 
   Send,
   Building,
-  Mail,
-  Phone
+  Mail
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface QuoteCartDrawerProps {
   isOpen: boolean;
@@ -35,6 +34,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
 }) => {
   if (!isOpen) return null;
 
+  const { t } = useLanguage();
   const [companyName, setCompanyName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -108,12 +108,13 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
           <div className="flex items-center gap-2">
             <ShoppingBag className="w-5 h-5 text-amber-400" />
             <h2 className="text-lg font-black uppercase tracking-tight">
-              MON PANIER DEVIS GROSSISTE
+              {t('quoteDrawerTitle')}
             </h2>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-1.5 text-emerald-200 hover:text-white rounded-lg hover:bg-emerald-900"
+            className="p-1.5 text-emerald-200 hover:text-white rounded-lg hover:bg-emerald-900 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -129,15 +130,15 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
               </div>
               <h3 className="text-xl font-black text-[#013b22]">DEVIS TRANSMIS AVEC SUCCÈS !</h3>
               <p className="text-xs text-gray-600">
-                Un commercial SenToll Bi traite votre panier et vous répondra sous 24h.
+                {t('quoteSuccessMsg')}
               </p>
             </div>
           ) : cartItems.length === 0 ? (
             <div className="py-16 text-center space-y-3">
               <Package className="w-12 h-12 text-gray-300 mx-auto" />
-              <p className="text-sm font-bold text-gray-600">Votre panier devis est vide.</p>
+              <p className="text-sm font-bold text-gray-600">{t('emptyQuoteBasket')}</p>
               <p className="text-xs text-gray-400">
-                Parcourez le catalogue et ajoutez des références pour calculer vos tarifs de gros.
+                {t('emptyBasketSubtitle')}
               </p>
             </div>
           ) : (
@@ -147,10 +148,11 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                 <div className="flex justify-between items-center text-xs font-bold text-gray-500 uppercase border-b pb-1">
                   <span>Références choisies ({cartItems.length})</span>
                   <button 
+                    type="button"
                     onClick={onClearCart}
-                    className="text-rose-600 hover:underline flex items-center gap-1 text-[10px]"
+                    className="text-rose-600 hover:underline flex items-center gap-1 text-[10px] cursor-pointer"
                   >
-                    <Trash2 className="w-3 h-3" /> Vider
+                    <Trash2 className="w-3 h-3" /> {t('clearQuoteBasket')}
                   </button>
                 </div>
 
@@ -175,10 +177,10 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                         <div>
                           <p className="font-extrabold text-[#013b22] uppercase leading-tight">{item.product.name}</p>
                           <p className="text-[10px] text-gray-500">
-                            {item.product.unitsPerCarton} units / carton | {tier.pricePerUnit.toFixed(2)} €/unit
+                            {item.product.unitsPerCarton} {t('pcs')} / {t('carton')} | {tier.pricePerUnit.toFixed(2)} €/{t('pcs')}
                           </p>
                           <p className="text-[10px] text-amber-700 font-bold">
-                            Total: {totalUnits} unités
+                            Total: {totalUnits} {t('pcs')}
                           </p>
                         </div>
                       </div>
@@ -187,7 +189,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                         <div className="flex items-center gap-1 justify-end">
                           <button 
                             onClick={() => onUpdateCartonCount(item.product.id, Math.max(1, item.cartonsCount - 1))}
-                            className="w-5 h-5 bg-white border rounded font-bold text-gray-700 hover:bg-gray-100 flex items-center justify-center text-xs"
+                            className="w-5 h-5 bg-white border rounded font-bold text-gray-700 hover:bg-gray-100 flex items-center justify-center text-xs cursor-pointer"
                             type="button"
                           >
                             -
@@ -205,14 +207,14 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                           <span className="text-[10px] text-gray-500 font-bold pr-1">ctn</span>
                           <button 
                             onClick={() => onUpdateCartonCount(item.product.id, item.cartonsCount + 1)}
-                            className="w-5 h-5 bg-white border rounded font-bold text-gray-700 hover:bg-gray-100 flex items-center justify-center text-xs"
+                            className="w-5 h-5 bg-white border rounded font-bold text-gray-700 hover:bg-gray-100 flex items-center justify-center text-xs cursor-pointer"
                             type="button"
                           >
                             +
                           </button>
                           <button 
                             onClick={() => onRemoveItem(item.product.id)}
-                            className="text-gray-400 hover:text-rose-600 ml-1"
+                            className="text-gray-400 hover:text-rose-600 ml-1 cursor-pointer"
                             type="button"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -231,14 +233,14 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
               <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-xl space-y-2 text-xs">
                 <div className="flex justify-between text-gray-700 font-medium">
                   <span>Total Cartons:</span>
-                  <strong className="text-[#013b22]">{totalCartons} cartons ({totalUnitsCount} pcs)</strong>
+                  <strong className="text-[#013b22]">{totalCartons} {t('carton')}s ({totalUnitsCount} {t('pcs')})</strong>
                 </div>
                 <div className="flex justify-between text-gray-700 font-medium">
                   <span>Poids Brut Estimé:</span>
                   <strong className="text-[#013b22]">~{totalGrossWeightKg.toFixed(1)} kg</strong>
                 </div>
                 <div className="flex justify-between text-[#013b22] font-black text-sm border-t border-emerald-200 pt-2">
-                  <span>ESTIMATION TOTAL HT:</span>
+                  <span>{t('estimatedTotalHT')}</span>
                   <span className="text-[#ea580c] text-base">{totalEstimatedAmount.toFixed(2)} € HT</span>
                 </div>
               </div>
@@ -250,7 +252,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                 </p>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-700">Raison Sociale *</label>
+                  <label className="block text-[11px] font-bold text-gray-700">{t('companyName')} *</label>
                   <div className="relative">
                     <Building className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2.5" />
                     <input
@@ -266,7 +268,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-[11px] font-bold text-gray-700">Email Pro *</label>
+                    <label className="block text-[11px] font-bold text-gray-700">{t('emailPro')} *</label>
                     <div className="relative">
                       <Mail className="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2.5" />
                       <input
@@ -281,7 +283,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-bold text-gray-700">N° TVA Intracom.</label>
+                    <label className="block text-[11px] font-bold text-gray-700">{t('siretNumber')}</label>
                     <input
                       type="text"
                       placeholder="FR 123456789"
@@ -296,18 +298,18 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                   <button
                     type="button"
                     onClick={handlePrintQuote}
-                    className="px-3 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border"
+                    className="px-3 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 border cursor-pointer"
                   >
                     <Printer className="w-3.5 h-3.5" />
-                    <span>Imprimer Devis</span>
+                    <span>Imprimer</span>
                   </button>
 
                   <button
                     type="submit"
-                    className="flex-1 bg-[#013b22] hover:bg-[#025a34] text-white py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md"
+                    className="flex-1 bg-[#013b22] hover:bg-[#025a34] text-white py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-md cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5 text-amber-400" />
-                    <span>ENVOYER LE DEVIS DE GROS</span>
+                    <span>{t('finalizeQuoteRequest')}</span>
                   </button>
                 </div>
 

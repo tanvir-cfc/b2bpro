@@ -15,6 +15,7 @@ import {
   Sparkles,
   ShoppingBag
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface ProductDetailModalProps {
   product: Product | null;
@@ -29,6 +30,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
 }) => {
   if (!product) return null;
 
+  const { t } = useLanguage();
   const [cartons, setCartons] = useState(2);
   const [activeTab, setActiveTab] = useState<'specs' | 'logistics' | 'nutrition'>('specs');
   const [sampleRequested, setSampleRequested] = useState(false);
@@ -44,7 +46,6 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   const totalAmount = totalUnits * currentUnitPrice;
 
   const totalGrossWeight = cartons * product.cartonGrossWeightKg;
-  const isPalletEquivalent = cartons >= (product.cartonsPerPallet / 2);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
@@ -54,15 +55,16 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
         <div className="bg-[#013b22] text-white p-4 sm:p-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="bg-amber-500 text-amber-950 text-xs font-extrabold px-2.5 py-1 rounded-md uppercase">
-              FICHE TECHNIQUE B2B
+              {t('productTechSheetTitle')}
             </span>
             <h2 className="text-xl sm:text-2xl font-black uppercase tracking-tight">
               {product.name}
             </h2>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-2 text-emerald-200 hover:text-white hover:bg-emerald-900/60 rounded-full transition-colors"
+            className="p-2 text-emerald-200 hover:text-white hover:bg-emerald-900/60 rounded-full transition-colors cursor-pointer"
           >
             <X className="w-6 h-6" />
           </button>
@@ -80,7 +82,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 className="max-h-60 max-w-full object-contain rounded-xl mx-auto drop-shadow-md"
               />
               <span className="absolute bottom-3 right-3 bg-white/90 text-[#013b22] text-xs font-bold px-2.5 py-1 rounded-lg border border-gray-200 shadow-sm">
-                Code EAN: {product.ean}
+                {t('eanCode')} {product.ean}
               </span>
             </div>
 
@@ -135,8 +137,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               ].map((tab) => (
                 <button
                   key={tab.id}
+                  type="button"
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`pb-2 transition-colors ${
+                  className={`pb-2 transition-colors cursor-pointer ${
                     activeTab === tab.id
                       ? 'border-b-2 border-[#013b22] text-[#013b22] font-black'
                       : 'text-gray-500 hover:text-gray-800'
@@ -154,7 +157,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 {/* Volume Pricing Matrix */}
                 <div className="bg-gray-50 p-3 rounded-xl border border-gray-200">
                   <p className="text-[11px] font-extrabold text-gray-500 uppercase mb-2">
-                    Grille Tarifaire Dégressive B2B (Prix HT par Unité)
+                    {t('pricingTierHeading')}
                   </p>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
                     {product.tieredPricing.map((tier, idx) => {
@@ -179,9 +182,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                 {/* Interactive Order Configurator */}
                 <div className="bg-emerald-50/80 border border-emerald-200 p-4 rounded-2xl space-y-3">
                   <div className="flex items-center justify-between text-xs font-bold text-[#013b22]">
-                    <span>CONFIGURER LE VOLUME DE COMMANDE:</span>
+                    <span>CONFIGURER LE VOLUME:</span>
                     <span className="text-amber-800 font-extrabold">
-                      1 Carton = {product.unitsPerCarton} {product.category === 'pots' ? 'pots' : 'sachets'}
+                      1 {t('carton')} = {product.unitsPerCarton} {t('pcs')}
                     </span>
                   </div>
 
@@ -191,7 +194,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       <div>
                         <p className="text-xs font-black text-[#013b22]">Quantité de Cartons</p>
                         <p className="text-[11px] text-gray-500 font-semibold">
-                          Total: <strong className="text-emerald-800">{totalUnits} unités</strong> (~{totalGrossWeight.toFixed(1)} kg brut)
+                          Total: <strong className="text-emerald-800">{totalUnits} {t('pcs')}</strong> (~{totalGrossWeight.toFixed(1)} kg)
                         </p>
                       </div>
                     </div>
@@ -199,7 +202,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                     <div className="flex items-center gap-1.5">
                       <button 
                         onClick={() => setCartons(Math.max(1, cartons - 1))}
-                        className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-black flex items-center justify-center text-sm"
+                        className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-black flex items-center justify-center text-sm cursor-pointer"
                         type="button"
                       >
                         <Minus className="w-4 h-4" />
@@ -216,7 +219,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                       />
                       <button 
                         onClick={() => setCartons(cartons + 1)}
-                        className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-black flex items-center justify-center text-sm"
+                        className="w-8 h-8 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-800 font-black flex items-center justify-center text-sm cursor-pointer"
                         type="button"
                       >
                         <Plus className="w-4 h-4" />
@@ -302,20 +305,22 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
               <button
+                type="button"
                 onClick={() => {
                   onAddToCart(product, cartons);
                   onClose();
                 }}
-                className="w-full sm:flex-1 bg-[#013b22] hover:bg-[#025a34] text-white py-3.5 rounded-xl text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
+                className="w-full sm:flex-1 bg-[#013b22] hover:bg-[#025a34] text-white py-3.5 rounded-xl text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4 text-amber-400" />
-                <span>AJOUTER {cartons} CARTON(S) AU DEVIS ({totalAmount.toFixed(2)} €)</span>
+                <span>{t('addToQuote')} ({totalAmount.toFixed(2)} €)</span>
               </button>
 
               <button
+                type="button"
                 onClick={() => setSampleRequested(true)}
                 disabled={sampleRequested}
-                className={`w-full sm:w-auto px-5 py-3.5 rounded-xl text-xs font-bold border transition-colors flex items-center justify-center gap-1.5 ${
+                className={`w-full sm:w-auto px-5 py-3.5 rounded-xl text-xs font-bold border transition-colors flex items-center justify-center gap-1.5 cursor-pointer ${
                   sampleRequested
                     ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
                     : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100'

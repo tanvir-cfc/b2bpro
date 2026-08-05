@@ -15,6 +15,7 @@ import {
   Check
 } from 'lucide-react';
 import { useLanguage, LANGUAGES, LanguageCode } from '../context/LanguageContext';
+import { Logo } from './Logo';
 
 interface HeaderProps {
   activeTab: string;
@@ -130,23 +131,9 @@ export const Header: React.FC<HeaderProps> = ({
         <button 
           type="button"
           onClick={() => setActiveTab('accueil')}
-          className="flex items-center gap-2 text-left group focus:outline-none cursor-pointer"
+          className="flex items-center group focus:outline-none cursor-pointer"
         >
-          <div className="flex flex-col">
-            <div className="flex items-center text-2xl font-black tracking-tight leading-none">
-              <span className="text-[#ea580c] flex items-center">
-                S<span className="inline-block w-2.5 h-2.5 rounded-full bg-amber-500 mx-[1px]"></span>n
-              </span>
-              <span className="text-[#013b22] ml-0.5">Toll</span>
-              <span className="text-[#16a34a] font-black ml-1 flex items-center">
-                Bi
-                <span className="text-xs ml-0.5 text-amber-500 font-bold">🌿</span>
-              </span>
-            </div>
-            <span className="text-[9px] uppercase tracking-[0.25em] font-extrabold text-[#013b22]/80 mt-1">
-              SAVEURS D'AFRIQUE
-            </span>
-          </div>
+          <Logo size="md" variant="color" />
         </button>
 
         {/* Desktop Navigation Links */}

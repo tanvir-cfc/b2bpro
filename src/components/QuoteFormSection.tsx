@@ -10,12 +10,14 @@ import {
   Check 
 } from 'lucide-react';
 import { QuoteRequest } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface QuoteFormSectionProps {
   onAddQuoteRequest: (quote: QuoteRequest) => void;
 }
 
 export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRequest }) => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     companyName: '',
     contactName: '',
@@ -63,15 +65,15 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
 
             <div className="relative z-10 space-y-6">
               <span className="bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-black uppercase px-3 py-1 rounded-full">
-                PARTENARIAT GROSSISTE & REVENTE
+                {t('navDistributeur')}
               </span>
 
               <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight leading-tight">
-                DEVENEZ NOTRE PARTENAIRE DISTRIBUTEUR
+                {t('quoteFormTitle')}
               </h2>
 
               <p className="text-emerald-100 text-sm leading-relaxed">
-                Remplissez le formulaire ci-contre et recevez votre offre tarifaire personnalisée sur-mesure sous 24 heures.
+                {t('quoteFormSubtitle')}
               </p>
 
               <div className="space-y-3 pt-2">
@@ -107,9 +109,10 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
                   DEMANDE DE DEVIS TRANSMISE !
                 </h3>
                 <p className="text-gray-600 text-sm max-w-md mx-auto">
-                  Merci <strong>{formData.companyName}</strong>. Notre équipe commerciale étudie votre dossier et vous contactera à l'adresse <strong>{formData.email}</strong> sous 24 heures ouvrées.
+                  {t('quoteSuccessMsg')}
                 </p>
                 <button
+                  type="button"
                   onClick={() => {
                     setSubmitted(false);
                     setFormData({
@@ -122,7 +125,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
                       message: ''
                     });
                   }}
-                  className="bg-[#013b22] text-white px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide hover:bg-[#025a34]"
+                  className="bg-[#013b22] text-white px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide hover:bg-[#025a34] cursor-pointer"
                 >
                   Envoyer une autre demande
                 </button>
@@ -131,14 +134,14 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
               <form onSubmit={handleSubmit} className="space-y-4">
                 
                 <h3 className="text-xl font-black text-[#013b22] uppercase tracking-tight border-b border-gray-200 pb-3">
-                  DEMANDE DE DEVIS PERSONNALISÉ
+                  {t('quoteFormTitle')}
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Nom de votre entreprise */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                      Nom de votre entreprise *
+                      {t('companyName')} *
                     </label>
                     <div className="relative">
                       <Building2 className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
@@ -180,7 +183,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
                   {/* Email professionnel */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                      Email professionnel *
+                      {t('emailPro')} *
                     </label>
                     <div className="relative">
                       <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
@@ -198,7 +201,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
                   {/* Téléphone */}
                   <div>
                     <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                      Téléphone *
+                      {t('phoneNumber')} *
                     </label>
                     <div className="relative">
                       <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
@@ -235,7 +238,7 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
                 {/* Votre message */}
                 <div>
                   <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                    Votre message (Optionnel)
+                    {t('additionalComments')}
                   </label>
                   <textarea
                     rows={3}
@@ -249,9 +252,9 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
                 {/* Submit button matching screenshot */}
                 <button
                   type="submit"
-                  className="w-full bg-[#013b22] hover:bg-[#025a34] text-white py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all"
+                  className="w-full bg-[#013b22] hover:bg-[#025a34] text-white py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all cursor-pointer"
                 >
-                  <span>ENVOYER MA DEMANDE DE DEVIS</span>
+                  <span>{t('submitQuoteButton')}</span>
                   <Send className="w-4 h-4 text-amber-400" />
                 </button>
 
