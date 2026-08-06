@@ -97,10 +97,10 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         )}
 
         {/* Filter Bar */}
-        <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-sm mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-sm mb-8 flex flex-col md:flex-row justify-between items-center gap-3">
           
-          {/* Categories Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
+          {/* Categories Tabs - Horizontally scrollable on mobile */}
+          <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 sm:pb-0 scrollbar-none touch-pan-x">
             {[
               { id: 'all', label: t('allProducts') },
               { id: 'pots', label: t('glassJarsFormat') },
@@ -111,10 +111,10 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id as Category)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider shrink-0 transition-all cursor-pointer ${
                   selectedCategory === cat.id
-                    ? 'bg-[#0b2416] text-white shadow-sm'
-                    : 'bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100'
+                    ? 'bg-[#0b2416] text-amber-400 shadow-md border border-emerald-900'
+                    : 'bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 font-bold'
                 }`}
               >
                 {cat.label}
@@ -124,13 +124,13 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
 
           {/* Search Box */}
           <div className="relative w-full md:w-64">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
+            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
             <input
               type="text"
               placeholder={t('searchPlaceholder')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-1.5 bg-gray-50 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-[#0b2416] focus:outline-none"
+              className="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium focus:ring-2 focus:ring-[#0b2416] focus:outline-none"
             />
           </div>
 
