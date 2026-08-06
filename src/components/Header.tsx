@@ -6,13 +6,15 @@ import {
   User, 
   FileText, 
   ShoppingBag, 
-  LayoutDashboard, 
+  ShoppingCart,
   ChevronDown, 
   Menu, 
   X,
   Phone,
   Mail,
-  Check
+  Check,
+  ShieldCheck,
+  Package
 } from 'lucide-react';
 import { useLanguage, LANGUAGES, LanguageCode } from '../context/LanguageContext';
 import { Logo } from './Logo';
@@ -54,58 +56,65 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="w-full sticky top-0 z-40 bg-white shadow-sm font-sans">
       {/* Top Banner Notice */}
-      <div className="bg-[#042f1a] text-emerald-100 text-[11px] py-1.5 px-4 border-b border-emerald-900/50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 font-medium tracking-wide min-w-0">
-            <span className="bg-emerald-800/90 text-amber-300 px-1.5 py-0.5 rounded text-[10px] font-extrabold border border-amber-400/30 shrink-0">
-              PRO B2B
+      <div className="bg-[#05180d] text-emerald-100 text-[11px] py-2 px-4 border-b border-emerald-900/60 font-sans">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          
+          {/* Left: Authentic African Excellence */}
+          <div className="flex items-center gap-2 text-[11px] font-bold tracking-wide">
+            <ShieldCheck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span className="uppercase tracking-wider text-[10px] font-black text-white">
+              {t('authenticExcellence') || 'AUTHENTIC AFRICAN EXCELLENCE'}
             </span>
-            <Lock className="w-3.5 h-3.5 text-amber-400 shrink-0 hidden sm:inline" />
-            <span className="truncate font-semibold">{t('proNotice')}</span>
           </div>
 
-          <div className="flex items-center gap-4 text-[11px] shrink-0">
-            <div className="hidden xl:flex items-center gap-1.5 text-emerald-200 whitespace-nowrap">
-              <Truck className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-              <span>{t('deliveryInfo')}</span>
-            </div>
-            <div className="hidden lg:flex items-center gap-3 border-l border-emerald-800/80 pl-3 text-emerald-300 whitespace-nowrap">
-              <span className="flex items-center gap-1">
-                <Phone className="w-3 h-3 text-amber-400" /> {t('contactPhone')}
-              </span>
+          {/* Center: B2B Minimum Order Notice */}
+          <div className="hidden md:flex items-center gap-2 text-[11px] font-medium text-emerald-200/90">
+            <Package className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+            <span>{t('b2bNotice') || 'B2B ONLY – Minimum order quantity applies'}</span>
+          </div>
+
+          {/* Right: Shipping + Language Selector */}
+          <div className="flex items-center gap-4 text-[11px] shrink-0 font-medium text-emerald-200">
+            <div className="hidden sm:flex items-center gap-1.5 whitespace-nowrap">
+              <Globe className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span>{t('shippingEurope') || 'Shipping to Europe'}</span>
             </div>
 
             {/* Language Selector Dropdown */}
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
-                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center gap-1.5 bg-emerald-900/90 hover:bg-emerald-800 text-emerald-100 px-2 py-0.5 rounded border border-emerald-700/60 cursor-pointer transition-colors text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-amber-400"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setLangDropdownOpen((prev) => !prev);
+                }}
+                className="flex items-center gap-1.5 bg-emerald-950/90 hover:bg-emerald-900 text-emerald-100 px-2.5 py-1 rounded border border-emerald-700/60 cursor-pointer transition-colors text-xs font-semibold focus:outline-none"
                 aria-haspopup="true"
                 aria-expanded={langDropdownOpen}
               >
                 <Globe className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span className="flex items-center gap-1">
                   <span>{currentLangObj.flag}</span>
-                  <span className="hidden sm:inline">{currentLangObj.name}</span>
+                  <span>{currentLangObj.name}</span>
                 </span>
                 <ChevronDown className={`w-3 h-3 text-emerald-300 transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {langDropdownOpen && (
-                <div className="absolute right-0 mt-1.5 w-44 bg-white text-gray-800 rounded-lg shadow-xl border border-gray-200 py-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute right-0 mt-1.5 w-48 bg-white text-gray-800 rounded-lg shadow-2xl border border-gray-200 py-1.5 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                   <div className="px-3 py-1 text-[10px] font-bold text-gray-400 uppercase tracking-wider border-b border-gray-100 mb-1">
-                    Langue / Language
+                    Language / Langue
                   </div>
                   {LANGUAGES.map((lang) => (
                     <button
                       key={lang.code}
                       type="button"
-                      onClick={() => {
+                      onClick={(e) => {
+                        e.stopPropagation();
                         setLanguage(lang.code as LanguageCode);
                         setLangDropdownOpen(false);
                       }}
-                      className={`w-full flex items-center justify-between px-3 py-1.5 text-xs text-left hover:bg-emerald-50 hover:text-[#013b22] cursor-pointer font-medium transition-colors ${
+                      className={`w-full flex items-center justify-between px-3 py-2 text-xs text-left hover:bg-emerald-50 hover:text-[#013b22] cursor-pointer font-medium transition-colors ${
                         language === lang.code ? 'bg-emerald-50/80 text-[#013b22] font-bold' : 'text-gray-700'
                       }`}
                     >
@@ -122,111 +131,87 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-        {/* Brand Logo */}
-        <button 
-          type="button"
-          onClick={() => setActiveTab('accueil')}
-          className="flex items-center group focus:outline-none cursor-pointer"
-        >
-          <Logo size="md" variant="color" />
-        </button>
+      {/* Main Navbar matching reference design */}
+      <div className="bg-[#0b2416] border-b border-emerald-900/60 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+          {/* Brand Logo */}
+          <button 
+            type="button"
+            onClick={() => setActiveTab('accueil')}
+            className="flex items-center group focus:outline-none cursor-pointer"
+          >
+            <Logo size="md" variant="white" showSubtitle={false} />
+          </button>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 text-sm font-semibold text-gray-700">
-          {[
-            { id: 'accueil', label: t('navAccueil') },
-            { id: 'catalogue', label: t('navCatalogue') },
-            { id: 'marques', label: t('navMarques') },
-            { id: 'importation', label: t('navImportation') },
-            { id: 'distributeur', label: t('navDistributeur') },
-            { id: 'ressources', label: t('navRessources') }
-          ].map((item) => (
+          {/* Desktop Navigation Links matching screenshot */}
+          <nav className="hidden lg:flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-100/90">
+            {[
+              { id: 'accueil', label: t('navAccueil') || 'HOME' },
+              { id: 'catalogue', label: t('navCatalogue') || 'CATALOGUE', hasDropdown: true },
+              { id: 'distributeur', label: t('navBecomeDistributor') || 'BECOME A DISTRIBUTOR' },
+              { id: 'importation', label: t('navImportation') || 'IMPORTATION' },
+              { id: 'marques', label: t('navAboutUs') || 'ABOUT US' },
+              { id: 'ressources', label: t('navContact') || 'CONTACT' }
+            ].map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                className={`px-3 py-2 rounded transition-all cursor-pointer flex items-center gap-1 ${
+                  activeTab === item.id
+                    ? 'text-amber-400 font-black border-b-2 border-amber-400 bg-emerald-900/30'
+                    : 'hover:text-amber-300 hover:bg-emerald-900/20'
+                }`}
+              >
+                <span>{item.label}</span>
+                {item.hasDropdown && <ChevronDown className="w-3 h-3 text-amber-400" />}
+              </button>
+            ))}
+          </nav>
+
+          {/* Right CTA Actions matching screenshot */}
+          <div className="hidden sm:flex items-center gap-3">
+            {/* Cart Icon Button */}
             <button
               type="button"
-              key={item.id}
-              onClick={() => setActiveTab(item.id)}
-              className={`px-3.5 py-2 rounded-lg transition-all cursor-pointer ${
-                activeTab === item.id
-                  ? 'bg-emerald-50 text-[#013b22] font-bold border-b-2 border-[#013b22]'
-                  : 'hover:text-[#013b22] hover:bg-gray-50'
-              }`}
+              onClick={() => setIsQuoteDrawerOpen(true)}
+              className="relative p-2.5 bg-emerald-950/90 hover:bg-emerald-900 text-emerald-100 border border-emerald-700/60 rounded-full transition-all cursor-pointer shadow-md hover:scale-105"
+              aria-label="View Cart"
+              title={t('monDevis') || 'Cart'}
             >
-              {item.label}
+              <ShoppingCart className="w-5 h-5 text-amber-400" />
+              {quoteCartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-amber-500 text-gray-950 text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-[#05180d] shadow-sm">
+                  {quoteCartCount}
+                </span>
+              )}
             </button>
-          ))}
-        </nav>
 
-        {/* Right CTA Actions */}
-        <div className="hidden sm:flex items-center gap-2">
-          {/* Admin Toggle Switch */}
+            {/* Request a Quote CTA Button matching reference image */}
+            <button
+              type="button"
+              onClick={() => setActiveTab('distributeur')}
+              className="flex items-center gap-2 bg-[#d97706] hover:bg-[#b45309] text-white px-4 py-2.5 rounded-md text-xs font-black uppercase tracking-wider transition-all shadow-md cursor-pointer border border-amber-400/40"
+            >
+              <FileText className="w-4 h-4 text-amber-100" />
+              <span>{t('demanderDevis') || 'REQUEST A QUOTE'}</span>
+            </button>
+          </div>
+
+          {/* Mobile Hamburger Button */}
           <button
             type="button"
-            onClick={() => {
-              setIsAdmin(!isAdmin);
-              if (!isAdmin) setActiveTab('admin');
-              else setActiveTab('accueil');
-            }}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-full font-bold border transition-colors cursor-pointer ${
-              isAdmin
-                ? 'bg-amber-500 text-white border-amber-600 shadow-sm'
-                : 'bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200'
-            }`}
-            title="Basculer Mode Admin & Gestion de Stock"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 text-emerald-100 hover:bg-emerald-900/50 rounded-lg cursor-pointer"
+            aria-label="Toggle menu"
           >
-            <LayoutDashboard className="w-3.5 h-3.5" />
-            <span>{isAdmin ? t('adminActive') : t('adminSpace')}</span>
-          </button>
-
-          {/* Login Pro */}
-          <button
-            type="button"
-            onClick={() => setIsLoginModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-[#013b22] border border-[#013b22]/30 rounded-lg hover:bg-emerald-50 transition-colors cursor-pointer"
-          >
-            <User className="w-3.5 h-3.5" />
-            <span>{t('connexionPro')}</span>
-          </button>
-
-          {/* Quote Cart Drawer Button */}
-          <button
-            type="button"
-            onClick={() => setIsQuoteDrawerOpen(true)}
-            className="relative flex items-center gap-1.5 px-3 py-2 bg-amber-50 text-amber-900 border border-amber-300 rounded-lg font-semibold text-xs hover:bg-amber-100 transition-colors cursor-pointer"
-          >
-            <ShoppingBag className="w-4 h-4 text-amber-700" />
-            <span>{t('monDevis')}</span>
-            {quoteCartCount > 0 && (
-              <span className="bg-amber-600 text-white text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center">
-                {quoteCartCount}
-              </span>
-            )}
-          </button>
-
-          {/* Demander un Devis CTA */}
-          <button
-            type="button"
-            onClick={() => setActiveTab('distributeur')}
-            className="flex items-center gap-1.5 bg-[#013b22] hover:bg-[#02522f] text-white px-4 py-2 rounded-lg text-xs font-bold tracking-wide transition-all shadow-sm hover:shadow cursor-pointer"
-          >
-            <FileText className="w-3.5 h-3.5 text-amber-400" />
-            <span>{t('demanderDevis')}</span>
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
-
-        {/* Mobile Hamburger Button */}
-        <button
-          type="button"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="lg:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-lg cursor-pointer"
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
       </div>
 
       {/* Mobile Drawer */}
@@ -286,18 +271,6 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               type="button"
               onClick={() => {
-                setIsAdmin(!isAdmin);
-                setActiveTab(isAdmin ? 'accueil' : 'admin');
-                setMobileMenuOpen(false);
-              }}
-              className="w-full flex items-center justify-center gap-2 bg-amber-500 text-white py-2 rounded-lg font-bold text-xs cursor-pointer"
-            >
-              <LayoutDashboard className="w-4 h-4" />
-              <span>{isAdmin ? t('adminActive') : t('adminSpace')}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => {
                 setIsLoginModalOpen(true);
                 setMobileMenuOpen(false);
               }}
@@ -312,9 +285,9 @@ export const Header: React.FC<HeaderProps> = ({
                 setIsQuoteDrawerOpen(true);
                 setMobileMenuOpen(false);
               }}
-              className="w-full flex items-center justify-center gap-2 bg-amber-100 text-amber-900 py-2 rounded-lg font-bold text-xs cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-gray-950 py-2.5 rounded-lg font-bold text-xs cursor-pointer shadow-sm"
             >
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingCart className="w-4 h-4 text-gray-950" />
               <span>{t('monDevis')} ({quoteCartCount})</span>
             </button>
             <button

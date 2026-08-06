@@ -1,15 +1,16 @@
 import React from 'react';
 import { 
-  CheckCircle2, 
   ArrowRight, 
-  Download, 
-  PackageCheck, 
+  FileText, 
+  Leaf, 
+  Award, 
   Tag, 
-  ShieldCheck, 
-  Headphones,
-  Award
+  Truck, 
+  MessageSquare 
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+
+import FULLWIDTH_HERO_BG from '../assets/images/fullwidth_hero_banner_1786003482343.jpg';
 
 interface HeroProps {
   onOpenQuoteForm: () => void;
@@ -19,198 +20,117 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({
   onOpenQuoteForm,
-  onOpenCatalog,
-  onDownloadCatalog
+  onOpenCatalog
 }) => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative bg-gradient-to-b from-[#022c19] via-[#013b22] to-[#042d1b] text-white overflow-hidden py-12 lg:py-16">
-      {/* Background Subtle Mesh Patterns */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#f59e0b_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+    <section className="relative bg-[#04140b] text-white overflow-hidden py-12 lg:py-20 border-b border-emerald-900/60 min-h-[580px] flex flex-col justify-between">
+      
+      {/* Full Width Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={FULLWIDTH_HERO_BG} 
+          alt="SenTollBi Full Width Hero Banner" 
+          referrerPolicy="no-referrer"
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Dark gradient on the left half to guarantee readability of white typography while showing products on right */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#031109] via-[#031109]/85 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#031109] via-transparent to-[#031109]/40"></div>
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full my-auto">
+        <div className="max-w-2xl text-left space-y-6">
           
-          {/* Left Text Column */}
-          <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            
-            {/* Top Badge */}
-            <div className="inline-flex items-center gap-2 bg-emerald-900/80 border border-emerald-500/40 text-amber-300 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide">
-              <Award className="w-4 h-4 text-amber-400" />
-              <span>{t('heroBadge')}</span>
-            </div>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.12] drop-shadow-md">
+            {t('heroTitleMain1') || 'PREMIUM'} <br />
+            <span className="text-[#f59e0b]">{t('heroTitleMain2') || 'AFRICAN INGREDIENTS'}</span> <br />
+            {t('heroTitleMain3') || 'FOR EUROPEAN PROFESSIONALS'}
+          </h1>
 
-            {/* Main Headline */}
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-[1.15]">
-              {t('heroTitle1')} <br className="hidden sm:inline" />
-              <span className="text-amber-400 underline decoration-amber-500/40 underline-offset-4">
-                {t('heroTitle2')}
-              </span>
-            </h1>
+          <p className="text-emerald-100/90 text-sm sm:text-base font-normal max-w-xl leading-relaxed drop-shadow-sm">
+            {t('heroSubtitleMain') || 'Authentic products sourced directly from African regions and delivered to your business with quality, transparency and reliability.'}
+          </p>
 
-            {/* Subtitle */}
-            <p className="text-emerald-100 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-              {t('heroSubtitle')}
-            </p>
+          {/* Overlaid Action Buttons matching reference image */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+            <button
+              type="button"
+              onClick={onOpenQuoteForm}
+              className="bg-[#d97706] hover:bg-[#b45309] text-white px-7 py-3.5 rounded-md font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all shadow-xl border border-amber-400/30"
+            >
+              <span>{t('demanderDevis') || 'REQUEST A QUOTE'}</span>
+              <FileText className="w-4 h-4 text-amber-100" />
+            </button>
 
-            {/* Trust Bulletins Grid matching screenshot */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 pt-2 text-left">
-              {[
-                { icon: PackageCheck, text: 'LIVRAISON PALETTE ou conteneur' },
-                { icon: Tag, text: 'MARQUE DISTRIBUTEUR (MDD) & WHITE LABEL' },
-                { icon: ShieldCheck, text: 'CONDITIONS B2B avantageuses' },
-                { icon: Headphones, text: 'SERVICE PRO dédié 5j/7' }
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-2.5 bg-emerald-950/40 border border-emerald-800/60 p-2.5 rounded-lg">
-                  <item.icon className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                  <span className="text-xs font-bold text-emerald-50 uppercase tracking-wider leading-snug">
-                    {item.text}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Call To Actions */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4">
-              <button
-                type="button"
-                onClick={onOpenQuoteForm}
-                className="w-full sm:w-auto bg-[#ea580c] hover:bg-[#c2410c] text-white px-7 py-3.5 rounded-xl font-extrabold text-sm uppercase tracking-wider transition-all shadow-lg hover:shadow-orange-950/50 flex items-center justify-center gap-2.5 group cursor-pointer"
-              >
-                <span>{t('requestCustomQuote')}</span>
-                <ArrowRight className="w-4 h-4 text-amber-200 group-hover:translate-x-1 transition-transform" />
-              </button>
-
-              <button
-                type="button"
-                onClick={onOpenCatalog}
-                className="w-full sm:w-auto border-2 border-emerald-300/40 hover:border-white text-emerald-50 hover:bg-white/10 px-6 py-3.5 rounded-xl font-bold text-sm tracking-wide transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <Download className="w-4 h-4 text-amber-400" />
-                <span>{t('exploreCatalog')}</span>
-              </button>
-            </div>
-
-            {/* Guarantee Tagline */}
-            <div className="flex items-center gap-3 text-xs text-emerald-300/90 pt-1">
-              <CheckCircle2 className="w-4 h-4 text-amber-400" />
-              <span>Réponse sous 24h ouvrées — Tarification dégressive selon volumes</span>
-            </div>
-
+            <button
+              type="button"
+              onClick={onOpenCatalog}
+              className="bg-emerald-950/60 hover:bg-emerald-900/80 border-2 border-emerald-400/50 hover:border-white text-emerald-100 px-6 py-3.5 rounded-md font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all backdrop-blur-sm shadow-lg"
+            >
+              <span>{t('viewCatalogue') || 'VIEW CATALOGUE'}</span>
+              <ArrowRight className="w-4 h-4 text-amber-400" />
+            </button>
           </div>
 
-          {/* Right Product Banner Collage Column */}
-          <div className="lg:col-span-5 relative">
-            {/* Visual Glassmorphism Packaging Frame */}
-            <div className="relative mx-auto max-w-md lg:max-w-none bg-gradient-to-tr from-emerald-900/60 to-emerald-800/20 p-4 sm:p-6 rounded-2xl border border-emerald-500/30 shadow-2xl backdrop-blur-sm">
-              
-              {/* Product Showcase Cards Row */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                
-                {/* Product 1: Madd Glass Jar */}
-                <div 
-                  onClick={onOpenCatalog}
-                  className="bg-white/90 rounded-xl p-3 text-gray-900 shadow-md border border-amber-200 group hover:scale-[1.02] transition-transform cursor-pointer"
-                >
-                  <div className="relative h-32 sm:h-36 rounded-lg bg-amber-50 p-1 flex items-center justify-center">
-                    <img 
-                      src="https://images.unsplash.com/photo-1590779033100-9f60a05a013d?auto=format&fit=crop&q=80&w=400" 
-                      alt="Madd 100% Naturel Pot 250g" 
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <span className="absolute top-1.5 left-1.5 bg-[#ea580c] text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
-                      Bocal 250g
-                    </span>
-                  </div>
-                  <div className="mt-2 text-center">
-                    <p className="text-xs font-black text-[#013b22] uppercase tracking-tight">Madd 100% Naturel</p>
-                    <p className="text-[10px] text-amber-700 font-bold mt-0.5">Dès 5,40 € / pot</p>
-                  </div>
-                </div>
+        </div>
+      </div>
 
-                {/* Product 2: Café Touba */}
-                <div 
-                  onClick={onOpenCatalog}
-                  className="bg-white/90 rounded-xl p-3 text-gray-900 shadow-md border border-amber-200 group hover:scale-[1.02] transition-transform cursor-pointer"
-                >
-                  <div className="relative h-32 sm:h-36 rounded-lg bg-amber-900/10 p-1 flex items-center justify-center">
-                    <img 
-                      src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&q=80&w=400" 
-                      alt="Café Touba Moulu 250g" 
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <span className="absolute top-1.5 left-1.5 bg-[#013b22] text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
-                      Épices Djar
-                    </span>
-                  </div>
-                  <div className="mt-2 text-center">
-                    <p className="text-xs font-black text-[#013b22] uppercase tracking-tight">Café Touba Moulu</p>
-                    <p className="text-[10px] text-amber-700 font-bold mt-0.5">Dès 4,50 € / pot</p>
-                  </div>
-                </div>
+      {/* Bottom Hero 4 Badges Bar matching reference image */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-8 mt-8 border-t border-emerald-900/60">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-left">
+          
+          <div className="flex items-center gap-3 bg-[#03140a]/80 border border-emerald-800/80 p-3 rounded-lg backdrop-blur-md">
+            <Leaf className="w-5 h-5 text-amber-400 shrink-0" />
+            <div>
+              <p className="text-xs font-black uppercase text-white">{t('badge100Natural') || '100% NATURAL'}</p>
+              <p className="text-[11px] text-emerald-300">{t('badgeNoAdditives') || 'No additives'}</p>
+            </div>
+          </div>
 
-                {/* Product 3: Bissap Poudre */}
-                <div 
-                  onClick={onOpenCatalog}
-                  className="bg-white/90 rounded-xl p-3 text-gray-900 shadow-md border border-amber-200 group hover:scale-[1.02] transition-transform cursor-pointer"
-                >
-                  <div className="relative h-32 sm:h-36 rounded-lg bg-rose-50 p-1 flex items-center justify-center">
-                    <img 
-                      src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&q=80&w=400" 
-                      alt="Bissap Hibiscus Poudre 250g" 
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <span className="absolute top-1.5 left-1.5 bg-rose-700 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
-                      Hibiscus
-                    </span>
-                  </div>
-                  <div className="mt-2 text-center">
-                    <p className="text-xs font-black text-[#013b22] uppercase tracking-tight">Bissap en Poudre</p>
-                    <p className="text-[10px] text-amber-700 font-bold mt-0.5">Dès 4,00 € / pot</p>
-                  </div>
-                </div>
+          <div className="flex items-center gap-3 bg-[#03140a]/80 border border-emerald-800/80 p-3 rounded-lg backdrop-blur-md">
+            <Award className="w-5 h-5 text-amber-400 shrink-0" />
+            <div>
+              <p className="text-xs font-black uppercase text-white">{t('badgePremiumQuality') || 'PREMIUM QUALITY'}</p>
+              <p className="text-[11px] text-emerald-300">{t('badgeCarefullySelected') || 'Carefully selected'}</p>
+            </div>
+          </div>
 
-                {/* Product 4: Mangue Séchée Sachet */}
-                <div 
-                  onClick={onOpenCatalog}
-                  className="bg-white/90 rounded-xl p-3 text-gray-900 shadow-md border border-amber-200 group hover:scale-[1.02] transition-transform cursor-pointer"
-                >
-                  <div className="relative h-32 sm:h-36 rounded-lg bg-amber-100 p-1 flex items-center justify-center">
-                    <img 
-                      src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&q=80&w=400" 
-                      alt="Mangue Séchée Sachet 100g" 
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <span className="absolute top-1.5 left-1.5 bg-amber-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded uppercase">
-                      Sachet 100g
-                    </span>
-                  </div>
-                  <div className="mt-2 text-center">
-                    <p className="text-xs font-black text-[#013b22] uppercase tracking-tight">Mangue Séchée</p>
-                    <p className="text-[10px] text-amber-700 font-bold mt-0.5">Dès 3,70 € / sachet</p>
-                  </div>
-                </div>
+          <div className="flex items-center gap-3 bg-[#03140a]/80 border border-emerald-800/80 p-3 rounded-lg backdrop-blur-md">
+            <Tag className="w-5 h-5 text-amber-400 shrink-0" />
+            <div>
+              <p className="text-xs font-black uppercase text-white">{t('badgeWholesale') || 'B2B WHOLESALE'}</p>
+              <p className="text-[11px] text-emerald-300">{t('badgeBestPrices') || 'Best prices'}</p>
+            </div>
+          </div>
 
-              </div>
-
-              {/* Quality Label Stamp floating overlay */}
-              <div className="absolute -bottom-4 -right-4 bg-[#ea580c] text-white p-3 rounded-2xl shadow-xl flex items-center gap-2.5 border-2 border-white">
-                <div className="bg-white text-[#ea580c] p-1.5 rounded-full font-black text-xs">
-                  100%
-                </div>
-                <div className="text-[11px] leading-tight font-extrabold pr-1">
-                  Qualité Certifiée <br />
-                  <span className="text-amber-200 uppercase font-black text-[10px]">Normes Européennes</span>
-                </div>
-              </div>
-
+          <div className="flex items-center gap-3 bg-[#03140a]/80 border border-emerald-800/80 p-3 rounded-lg backdrop-blur-md">
+            <Truck className="w-5 h-5 text-amber-400 shrink-0" />
+            <div>
+              <p className="text-xs font-black uppercase text-white">{t('badgeFastDelivery') || 'FAST DELIVERY'}</p>
+              <p className="text-[11px] text-emerald-300">{t('badgeToAllEurope') || 'To all Europe'}</p>
             </div>
           </div>
 
         </div>
       </div>
+
+      {/* Floating WhatsApp Widget Icon */}
+      <a
+        href="https://wa.me/393520674106"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-[#16a34a] hover:bg-[#15803d] text-white p-3.5 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 border-2 border-white cursor-pointer group"
+        aria-label="WhatsApp Contact"
+        title="Contact us on WhatsApp (+39 352 067 4106)"
+      >
+        <MessageSquare className="w-6 h-6 fill-white text-white transition-transform group-hover:scale-110" />
+      </a>
+
     </section>
   );
 };
+
+
 

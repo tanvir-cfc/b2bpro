@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { 
-  CheckCircle2, 
   Send, 
-  Building2, 
+  CheckCircle2, 
+  MessageSquare, 
   Mail, 
   Phone, 
-  Globe, 
-  Boxes, 
-  Check 
+  FileText 
 } from 'lucide-react';
 import { QuoteRequest } from '../types';
 import { useLanguage } from '../context/LanguageContext';
@@ -54,216 +52,196 @@ export const QuoteFormSection: React.FC<QuoteFormSectionProps> = ({ onAddQuoteRe
   };
 
   return (
-    <section className="py-12 bg-white px-4 sm:px-6">
+    <section id="devis-section" className="py-16 bg-[#f8faf8] border-b border-gray-200 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+        
+        {/* Section Title */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <p className="text-xs font-black uppercase tracking-widest text-[#d97706] mb-1">
+            PARTNERSHIP & QUOTATIONS
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#0b2416] tracking-tight">
+            BECOME A DISTRIBUTOR OR REQUEST A QUOTE
+          </h2>
+          <p className="text-sm text-gray-600 mt-2 font-medium">
+            Fill out the form below to receive a personalized B2B offer within 24 business hours.
+          </p>
+          <div className="w-16 h-1 bg-[#d97706] mx-auto mt-3 rounded-full"></div>
+        </div>
+
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Devenez Distributeur Banner matching screenshot */}
-          <div className="lg:col-span-5 relative bg-gradient-to-br from-[#022c19] to-[#013b22] text-white p-8 rounded-3xl overflow-hidden flex flex-col justify-between shadow-xl border border-emerald-800">
-            {/* Background image overlay */}
-            <div className="absolute inset-0 opacity-15 bg-[url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800')] bg-cover bg-center pointer-events-none"></div>
-
-            <div className="relative z-10 space-y-6">
-              <span className="bg-amber-500/20 border border-amber-400/30 text-amber-300 text-xs font-black uppercase px-3 py-1 rounded-full">
-                {t('navDistributeur')}
+          {/* Left Column: Become a Distributor */}
+          <div className="lg:col-span-4 bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-sm space-y-6">
+            <div>
+              <span className="bg-emerald-100 text-[#0b2416] text-[10px] font-black px-2.5 py-1 rounded uppercase tracking-wider">
+                NETWORK
               </span>
-
-              <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight leading-tight">
-                {t('quoteFormTitle')}
-              </h2>
-
-              <p className="text-emerald-100 text-sm leading-relaxed">
-                {t('quoteFormSubtitle')}
+              <h3 className="text-xl font-black uppercase text-[#0b2416] mt-2 tracking-tight">
+                BECOME OUR DISTRIBUTOR
+              </h3>
+              <p className="text-xs text-gray-600 mt-2 leading-relaxed font-normal">
+                Join our growing network of distribution partners across Europe and expand your business with authentic African products.
               </p>
-
-              <div className="space-y-3 pt-2">
-                {[
-                  'Réponse sous 24h ouvrées garantie',
-                  'Offre sur-mesure adaptée à vos volumes',
-                  'Prix grossiste direct fabricant certifiés',
-                  'Accompagnement logistique dédié'
-                ].map((point, index) => (
-                  <div key={index} className="flex items-center gap-3 text-xs sm:text-sm font-bold text-white">
-                    <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
-                    <span>{point}</span>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            <div className="relative z-10 pt-8 mt-6 border-t border-emerald-800/80 text-xs text-emerald-200">
-              <p className="font-extrabold text-amber-300 uppercase">Service commercial Grossiste :</p>
-              <p className="mt-1">📞 +33 6 12 34 56 78 — 📧 contact@sentollbi.com</p>
+            <ul className="space-y-3 pt-2">
+              {[
+                'Exclusive distributor benefits & territory opportunities',
+                'Comprehensive marketing & sales support materials',
+                'Tailored wholesale offers & volume-based pricing',
+                'Reliable long-term supply chain partnership'
+              ].map((benefit, idx) => (
+                <li key={idx} className="flex items-start gap-2.5 text-xs text-gray-700 font-semibold">
+                  <span className="w-5 h-5 rounded-full bg-emerald-100 text-[#0b2416] flex items-center justify-center shrink-0 font-black text-[11px] mt-0.5">
+                    ✓
+                  </span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="p-4 bg-emerald-50 rounded-xl border border-emerald-200/80 text-xs text-[#0b2416] space-y-1">
+              <p className="font-extrabold uppercase">Fast Response Guaranteed</p>
+              <p className="text-gray-600 text-[11px]">Our B2B team reviews all distributor requests within 24 hours.</p>
             </div>
           </div>
 
-          {/* Right Column: Interactive Form matching screenshot */}
-          <div className="lg:col-span-7 bg-gray-50 p-6 sm:p-8 rounded-3xl border border-gray-200 shadow-md">
-            
+          {/* Middle Column: Personalized Quote Form */}
+          <div className="lg:col-span-5 bg-white p-6 sm:p-8 rounded-2xl border border-gray-200 shadow-lg relative">
+            <h3 className="text-xl font-black uppercase text-[#0b2416] tracking-tight mb-4">
+              REQUEST A PERSONALIZED QUOTE
+            </h3>
+
             {submitted ? (
-              <div className="text-center py-12 space-y-4">
-                <div className="w-16 h-16 bg-emerald-100 text-[#013b22] rounded-full flex items-center justify-center mx-auto">
-                  <Check className="w-8 h-8 text-emerald-700" />
-                </div>
-                <h3 className="text-2xl font-black text-[#013b22] uppercase">
-                  DEMANDE DE DEVIS TRANSMISE !
-                </h3>
-                <p className="text-gray-600 text-sm max-w-md mx-auto">
-                  {t('quoteSuccessMsg')}
+              <div className="bg-emerald-50 border-2 border-emerald-500 p-8 rounded-xl text-center space-y-4 my-6">
+                <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+                <h4 className="text-lg font-black uppercase text-[#0b2416]">QUOTE REQUEST SENT!</h4>
+                <p className="text-xs text-gray-700">
+                  Thank you for your request. Our B2B commercial team will contact you shortly with a personalized offer.
                 </p>
                 <button
                   type="button"
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({
-                      companyName: '',
-                      contactName: '',
-                      email: '',
-                      phone: '',
-                      country: 'France',
-                      quantityDesired: '',
-                      message: ''
-                    });
-                  }}
-                  className="bg-[#013b22] text-white px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wide hover:bg-[#025a34] cursor-pointer"
+                  onClick={() => setSubmitted(false)}
+                  className="bg-[#0b2416] text-white px-6 py-2.5 rounded-lg text-xs font-extrabold uppercase tracking-wider cursor-pointer"
                 >
-                  Envoyer une autre demande
+                  Send another request
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                
-                <h3 className="text-xl font-black text-[#013b22] uppercase tracking-tight border-b border-gray-200 pb-3">
-                  {t('quoteFormTitle')}
-                </h3>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Nom de votre entreprise */}
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                      {t('companyName')} *
-                    </label>
-                    <div className="relative">
-                      <Building2 className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                      <input
-                        type="text"
-                        required
-                        placeholder="Ex: EuroAfro Distribution"
-                        value={formData.companyName}
-                        onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 bg-white border border-gray-300 rounded-xl text-xs focus:ring-2 focus:ring-[#013b22] focus:outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Pays */}
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                      Pays de livraison *
-                    </label>
-                    <div className="relative">
-                      <Globe className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                      <select
-                        value={formData.country}
-                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 bg-white border border-gray-300 rounded-xl text-xs focus:ring-2 focus:ring-[#013b22] focus:outline-none"
-                      >
-                        <option value="France">France</option>
-                        <option value="Belgique">Belgique</option>
-                        <option value="Allemagne">Allemagne</option>
-                        <option value="Espagne">Espagne</option>
-                        <option value="Italie">Italie</option>
-                        <option value="Suisse">Suisse</option>
-                        <option value="Royaume-Uni">Royaume-Uni</option>
-                        <option value="Autre Europe">Autre Pays d'Europe</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  {/* Email professionnel */}
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                      {t('emailPro')} *
-                    </label>
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                      <input
-                        type="email"
-                        required
-                        placeholder="exemple@entreprise.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 bg-white border border-gray-300 rounded-xl text-xs focus:ring-2 focus:ring-[#013b22] focus:outline-none"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Téléphone */}
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                      {t('phoneNumber')} *
-                    </label>
-                    <div className="relative">
-                      <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-                      <input
-                        type="tel"
-                        required
-                        placeholder="Votre numéro de contact"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full pl-9 pr-3 py-2.5 bg-white border border-gray-300 rounded-xl text-xs focus:ring-2 focus:ring-[#013b22] focus:outline-none"
-                      />
-                    </div>
-                  </div>
+                <div>
+                  <label className="block text-[11px] font-black uppercase text-gray-700 mb-1">
+                    Company Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                    placeholder="e.g. EuroFoods Wholesalers SRL"
+                    className="w-full px-3.5 py-2.5 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0b2416] focus:bg-white focus:outline-none"
+                  />
                 </div>
 
-                {/* Quantité souhaitée */}
-                <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                    Quantité souhaitée (Cartons ou Palettes) *
-                  </label>
-                  <div className="relative">
-                    <Boxes className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-[11px] font-black uppercase text-gray-700 mb-1">
+                      Email Address *
+                    </label>
                     <input
-                      type="text"
+                      type="email"
                       required
-                      placeholder="Ex: 50 cartons de Madd, 20 cartons de Café Touba..."
-                      value={formData.quantityDesired}
-                      onChange={(e) => setFormData({ ...formData, quantityDesired: e.target.value })}
-                      className="w-full pl-9 pr-3 py-2.5 bg-white border border-gray-300 rounded-xl text-xs focus:ring-2 focus:ring-[#013b22] focus:outline-none"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="pro@company.com"
+                      className="w-full px-3.5 py-2.5 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0b2416] focus:bg-white focus:outline-none"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-[11px] font-black uppercase text-gray-700 mb-1">
+                      Country *
+                    </label>
+                    <select
+                      value={formData.country}
+                      onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                      className="w-full px-3.5 py-2.5 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0b2416] focus:bg-white focus:outline-none font-medium"
+                    >
+                      <option value="France">France</option>
+                      <option value="Belgium">Belgium</option>
+                      <option value="Germany">Germany</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Italy">Italy</option>
+                      <option value="Netherlands">Netherlands</option>
+                      <option value="Other Europe">Other Europe</option>
+                    </select>
+                  </div>
                 </div>
 
-                {/* Votre message */}
                 <div>
-                  <label className="block text-xs font-bold text-gray-700 uppercase mb-1">
-                    {t('additionalComments')}
+                  <label className="block text-[11px] font-black uppercase text-gray-700 mb-1">
+                    Message / Product Requirements *
                   </label>
                   <textarea
-                    rows={3}
-                    placeholder="Précisez vos besoins particuliers, conditions de livraison ou demande de marque propre (MDD)..."
+                    rows={4}
+                    required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full p-3 bg-white border border-gray-300 rounded-xl text-xs focus:ring-2 focus:ring-[#013b22] focus:outline-none"
-                  ></textarea>
+                    placeholder="Describe your desired products, volumes, pallet estimates or target delivery dates..."
+                    className="w-full px-3.5 py-2.5 text-xs bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#0b2416] focus:bg-white focus:outline-none"
+                  />
                 </div>
 
-                {/* Submit button matching screenshot */}
                 <button
                   type="submit"
-                  className="w-full bg-[#013b22] hover:bg-[#025a34] text-white py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                  className="w-full bg-[#d97706] hover:bg-[#b45309] text-white py-3.5 rounded-lg text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer border border-amber-400/30"
                 >
-                  <span>{t('submitQuoteButton')}</span>
-                  <Send className="w-4 h-4 text-amber-400" />
+                  <FileText className="w-4 h-4 text-amber-100" />
+                  <span>SEND QUOTE REQUEST</span>
                 </button>
-
               </form>
             )}
+          </div>
 
+          {/* Right Column: Need Help / WhatsApp Card */}
+          <div className="lg:col-span-3 bg-[#fdfbf7] p-6 rounded-2xl border border-amber-200/90 shadow-sm space-y-5 text-left">
+            <div>
+              <span className="bg-amber-100 text-amber-900 text-[10px] font-black px-2.5 py-1 rounded uppercase tracking-wider">
+                DIRECT CONTACT
+              </span>
+              <h3 className="text-xl font-black uppercase text-[#0b2416] mt-2 tracking-tight">
+                NEED HELP?
+              </h3>
+              <p className="text-xs text-gray-600 mt-2 leading-relaxed font-normal">
+                Our commercial team is available to answer all your technical, pricing, and shipping questions immediately.
+              </p>
+            </div>
+
+            <div className="space-y-3 text-xs pt-2 border-t border-amber-200/60">
+              <div className="flex items-center gap-2.5 text-gray-700">
+                <Mail className="w-4 h-4 text-amber-700 shrink-0" />
+                <span className="font-semibold">info@sentollbi.com</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-gray-700">
+                <Phone className="w-4 h-4 text-amber-700 shrink-0" />
+                <span className="font-semibold">+39 352 067 4106</span>
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/393520674106"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-[#16a34a] hover:bg-[#15803d] text-white py-3 rounded-xl text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer border border-green-400/40"
+            >
+              <MessageSquare className="w-4 h-4 text-white fill-white" />
+              <span>CHAT ON WHATSAPP</span>
+            </a>
           </div>
 
         </div>
+
       </div>
     </section>
   );

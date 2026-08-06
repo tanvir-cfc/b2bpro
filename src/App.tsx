@@ -9,6 +9,8 @@ import { ProductDetailModal } from './components/ProductDetailModal';
 import { StatsAndPartners } from './components/StatsAndPartners';
 import { LogisticsSection } from './components/LogisticsSection';
 import { QuoteFormSection } from './components/QuoteFormSection';
+import { MaadFlagship } from './components/MaadFlagship';
+import { WhyChooseUs } from './components/WhyChooseUs';
 import { WhiteLabelSection } from './components/WhiteLabelSection';
 import { QuoteCartDrawer } from './components/QuoteCartDrawer';
 import { AdminDashboard } from './components/AdminDashboard';
@@ -158,7 +160,7 @@ function AppContent() {
             <LogisticsSection />
           </div>
         ) : (
-          /* Default Accueil / Home Page View */
+          /* Default Accueil / Home Page View matching reference screenshot design */
           <div className="space-y-0">
             <Hero
               onOpenQuoteForm={() => setActiveTab('distributeur')}
@@ -178,11 +180,21 @@ function AppContent() {
               isFullView={false}
             />
 
-            <StatsAndPartners />
+            <MaadFlagship
+              onAddToCart={() => {
+                if (products.length > 0) {
+                  handleAddToCart(products[0], 1);
+                  setIsQuoteDrawerOpen(true);
+                }
+              }}
+              onOpenProductSheet={() => {
+                if (products.length > 0) {
+                  setSelectedProductModal(products[0]);
+                }
+              }}
+            />
 
-            <LogisticsSection />
-
-            <WhiteLabelSection />
+            <WhyChooseUs />
 
             <QuoteFormSection onAddQuoteRequest={handleAddQuoteRequest} />
           </div>

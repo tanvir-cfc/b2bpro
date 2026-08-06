@@ -1,67 +1,64 @@
 import React from 'react';
 import { 
-  ShoppingBag, 
-  Box, 
-  Clock, 
+  Building2, 
+  Award, 
   Factory, 
-  CreditCard 
+  CreditCard, 
+  FileText 
 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export const ValueProps: React.FC = () => {
+  const { t } = useLanguage();
+
   const props = [
     {
-      icon: ShoppingBag,
-      title: 'COMMANDE MINIMUM',
-      value: '10 cartons',
-      subtitle: '(possibilité par palette)'
+      icon: Building2,
+      title: t('vp1Title') || 'TRUSTED PARTNER',
+      subtitle: t('vp1Sub') || 'of European businesses'
     },
     {
-      icon: Box,
-      title: 'CONDITIONNEMENT',
-      value: 'Soigneusement emballés',
-      subtitle: 'et sécurisés pour transport'
-    },
-    {
-      icon: Clock,
-      title: 'DÉLAI DE LIVRAISON',
-      value: '5 à 10 jours ouvrés',
-      subtitle: 'en France & Europe'
+      icon: Award,
+      title: t('vp2Title') || 'QUALITY CERTIFIED',
+      subtitle: t('vp2Sub') || 'International standards'
     },
     {
       icon: Factory,
-      title: 'CAPACITÉ DE PRODUCTION',
-      value: 'Jusqu\'à 20 000 pots',
-      subtitle: 'par série industrielle'
+      title: t('vp3Title') || 'HIGH PRODUCTION CAPACITY',
+      subtitle: t('vp3Sub') || 'Up to 20,000+ jars per day'
     },
     {
       icon: CreditCard,
-      title: 'PAIEMENT B2B',
-      value: 'Virement bancaire',
-      subtitle: 'à 30 jours (sur accord)'
+      title: t('vp4Title') || 'SECURE PAYMENT',
+      subtitle: t('vp4Sub') || 'Safe & flexible options'
+    },
+    {
+      icon: FileText,
+      title: t('vp5Title') || 'DOCUMENTATION SUPPORT',
+      subtitle: t('vp5Sub') || 'All export documents provided'
     }
   ];
 
   return (
-    <section className="bg-emerald-50/70 border-y border-emerald-200/60 py-8 px-4 sm:px-6">
+    <section className="bg-white border-b border-gray-200 py-6 px-4 sm:px-6 shadow-sm">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {props.map((p, index) => (
             <div 
               key={index} 
-              className="flex flex-col items-center p-4 bg-white rounded-xl border border-emerald-100 shadow-sm hover:shadow-md transition-shadow"
+              className="flex items-center gap-3 p-3 bg-gray-50/80 rounded-xl border border-gray-200/80 hover:border-amber-400 transition-all group"
             >
-              <div className="w-12 h-12 rounded-xl bg-[#013b22]/10 flex items-center justify-center text-[#013b22] mb-3">
-                <p.icon className="w-6 h-6 text-[#013b22]" />
+              <div className="w-10 h-10 rounded-lg bg-[#0b2416]/10 flex items-center justify-center text-[#0b2416] group-hover:bg-[#0b2416] group-hover:text-amber-400 transition-colors shrink-0">
+                <p.icon className="w-5 h-5" />
               </div>
-              <h3 className="text-[11px] font-extrabold uppercase tracking-wider text-gray-500 mb-1">
-                {p.title}
-              </h3>
-              <p className="text-sm font-black text-[#013b22] leading-tight">
-                {p.value}
-              </p>
-              <p className="text-[11px] font-medium text-gray-500 mt-0.5">
-                {p.subtitle}
-              </p>
+              <div className="min-w-0">
+                <h3 className="text-[11px] font-black uppercase text-gray-900 tracking-tight leading-snug">
+                  {p.title}
+                </h3>
+                <p className="text-[10px] text-gray-500 font-medium truncate">
+                  {p.subtitle}
+                </p>
+              </div>
             </div>
           ))}
         </div>
@@ -69,3 +66,4 @@ export const ValueProps: React.FC = () => {
     </section>
   );
 };
+
