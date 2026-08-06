@@ -1,10 +1,9 @@
 import React from 'react';
 import { 
-  Building2, 
+  Sparkles, 
   Award, 
-  Factory, 
-  CreditCard, 
-  FileText 
+  Building2, 
+  Truck 
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -13,49 +12,44 @@ export const ValueProps: React.FC = () => {
 
   const props = [
     {
-      icon: Building2,
-      title: t('vp1Title') || 'TRUSTED PARTNER',
-      subtitle: t('vp1Sub') || 'of European businesses'
+      icon: Sparkles,
+      title: t('vp1Title') || '100% NATUREL',
+      subtitle: t('vp1Sub') || 'Sans additifs'
     },
     {
       icon: Award,
-      title: t('vp2Title') || 'QUALITY CERTIFIED',
-      subtitle: t('vp2Sub') || 'International standards'
+      title: t('vp2Title') || 'QUALITÉ SUPÉRIEURE',
+      subtitle: t('vp2Sub') || 'Soigneusement sélectionnés'
     },
     {
-      icon: Factory,
-      title: t('vp3Title') || 'HIGH PRODUCTION CAPACITY',
-      subtitle: t('vp3Sub') || 'Up to 20,000+ jars per day'
+      icon: Building2,
+      title: t('vp3Title') || 'VENTE EN GROS B2B',
+      subtitle: t('vp3Sub') || 'Meilleurs prix'
     },
     {
-      icon: CreditCard,
-      title: t('vp4Title') || 'SECURE PAYMENT',
-      subtitle: t('vp4Sub') || 'Safe & flexible options'
-    },
-    {
-      icon: FileText,
-      title: t('vp5Title') || 'DOCUMENTATION SUPPORT',
-      subtitle: t('vp5Sub') || 'All export documents provided'
+      icon: Truck,
+      title: t('vp4Title') || 'LIVRAISON RAPIDE',
+      subtitle: t('vp4Sub') || "Dans toute l'Europe"
     }
   ];
 
   return (
-    <section className="bg-white border-b border-gray-200 py-6 px-4 sm:px-6 shadow-sm">
+    <section className="bg-[#0b2416] border-y border-emerald-900/80 py-5 sm:py-6 px-4 sm:px-6 shadow-md text-white">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {props.map((p, index) => (
             <div 
               key={index} 
-              className="flex items-center gap-3 p-3 bg-gray-50/80 rounded-xl border border-gray-200/80 hover:border-amber-400 transition-all group"
+              className="flex items-center gap-3 p-3.5 bg-emerald-950/60 rounded-xl border border-emerald-800/60 hover:border-amber-400/60 hover:bg-emerald-900/50 transition-all group shadow-sm"
             >
-              <div className="w-10 h-10 rounded-lg bg-[#0b2416]/10 flex items-center justify-center text-[#0b2416] group-hover:bg-[#0b2416] group-hover:text-amber-400 transition-colors shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 group-hover:bg-amber-500 group-hover:text-gray-950 transition-all shrink-0 shadow-sm">
                 <p.icon className="w-5 h-5" />
               </div>
               <div className="min-w-0">
-                <h3 className="text-[11px] font-black uppercase text-gray-900 tracking-tight leading-snug">
+                <h3 className="text-xs sm:text-sm font-black uppercase text-amber-300 tracking-tight leading-snug">
                   {p.title}
                 </h3>
-                <p className="text-[10px] text-gray-500 font-medium truncate">
+                <p className="text-[11px] sm:text-xs text-emerald-100/90 font-medium truncate">
                   {p.subtitle}
                 </p>
               </div>
@@ -66,4 +60,5 @@ export const ValueProps: React.FC = () => {
     </section>
   );
 };
+
 

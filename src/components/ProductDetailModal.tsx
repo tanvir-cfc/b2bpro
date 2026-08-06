@@ -43,7 +43,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   ) || product.tieredPricing[0];
 
   const currentUnitPrice = matchedTier.pricePerUnit;
-  const totalAmount = totalUnits * currentUnitPrice;
+  const isSurDevis = !!matchedTier.customPriceText || currentUnitPrice === 0;
+  const totalAmount = isSurDevis ? 0 : totalUnits * currentUnitPrice;
 
   const totalGrossWeight = cartons * product.cartonGrossWeightKg;
 
@@ -162,6 +163,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
                     {product.tieredPricing.map((tier, idx) => {
                       const isActive = matchedTier === tier;
+                      const priceVal = tier.customPriceText ? tier.customPriceText : `${tier.pricePerUnit.toFixed(2).replace('.', ',')} €`;
                       return (
                         <div 
                           key={idx}
@@ -172,7 +174,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                           }`}
                         >
                           <p className="text-[10px] opacity-80">{tier.label}</p>
-                          <p className="text-sm font-black text-amber-400">{tier.pricePerUnit.toFixed(2)} €</p>
+                          <p className="text-sm font-black text-amber-400">{priceVal}</p>
+                          {tier.discount && <p className="text-[9px] opacity-75">{tier.discount}</p>}
                         </div>
                       );
                     })}
@@ -231,11 +234,15 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
                   <div className="flex items-center justify-between pt-2 border-t border-emerald-200 text-xs">
                     <div>
                       <p className="text-gray-600 font-medium">Prix unitaire appliqué:</p>
-                      <p className="text-base font-black text-[#013b22]">{currentUnitPrice.toFixed(2)} € HT</p>
+                      <p className="text-base font-black text-[#013b22]">
+                        {matchedTier.customPriceText ? matchedTier.customPriceText : `${currentUnitPrice.toFixed(2).replace('.', ',')} € HT`}
+                      </p>
                     </div>
                     <div className="text-right">
                       <p className="text-gray-600 font-medium">Estimation Total HT:</p>
-                      <p className="text-xl font-black text-[#ea580c]">{totalAmount.toFixed(2)} € HT</p>
+                      <p className="text-xl font-black text-[#ea580c]">
+                        {isSurDevis ? 'Sur devis' : `${totalAmount.toFixed(2).replace('.', ',')} € HT`}
+                      </p>
                     </div>
                   </div>
                 </div>

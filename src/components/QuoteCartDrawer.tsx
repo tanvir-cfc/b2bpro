@@ -47,8 +47,22 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
     const tier = item.product.tieredPricing.find(
       (t) => item.cartonsCount >= t.minQty && (t.maxQty === null || item.cartonsCount <= t.maxQty)
     ) || item.product.tieredPricing[0];
-    return sum + (totalUnits * tier.pricePerUnit);
+    const isQuoteTier = !!tier.customPriceText || tier.pricePerUnit === 0;
+    return sum + (isQuoteTier ? 0 : totalUnits * tier.pricePerUnit);
   }, 0);
+
+  const hasQuoteTier = cartItems.some((item) => {
+    const tier = item.product.tieredPricing.find(
+      (t) => item.cartonsCount >= t.minQty && (t.maxQty === null || item.cartonsCount <= t.maxQty)
+    ) || item.product.tieredPricing[0];
+    return !!tier.customPriceText || tier.pricePerUnit === 0;
+  });
+
+  const formattedTotalDisplay = hasQuoteTier
+    ? totalEstimatedAmount > 0
+      ? `${totalEstimatedAmount.toFixed(2).replace('.', ',')} € HT (+ Sur devis)`
+      : 'Sur devis'
+    : `${totalEstimatedAmount.toFixed(2).replace('.', ',')} € HT`;
 
   const totalCartons = cartItems.reduce((sum, item) => sum + item.cartonsCount, 0);
   const totalGrossWeightKg = cartItems.reduce((sum, item) => sum + (item.cartonsCount * item.product.cartonGrossWeightKg), 0);
@@ -161,7 +175,9 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                   const tier = item.product.tieredPricing.find(
                     (t) => item.cartonsCount >= t.minQty && (t.maxQty === null || item.cartonsCount <= t.maxQty)
                   ) || item.product.tieredPricing[0];
-                  const lineTotal = totalUnits * tier.pricePerUnit;
+                  const isQuoteTier = !!tier.customPriceText || tier.pricePerUnit === 0;
+                  const lineTotal = isQuoteTier ? 0 : totalUnits * tier.pricePerUnit;
+                  const unitDisplay = tier.customPriceText ? tier.customPriceText : `${tier.pricePerUnit.toFixed(2).replace('.', ',')} €/${t('pcs')}`;
 
                   return (
                     <div 
@@ -177,7 +193,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                         <div>
                           <p className="font-extrabold text-[#013b22] uppercase leading-tight">{item.product.name}</p>
                           <p className="text-[10px] text-gray-500">
-                            {item.product.unitsPerCarton} {t('pcs')} / {t('carton')} | {tier.pricePerUnit.toFixed(2)} €/{t('pcs')}
+                            {item.product.unitsPerCarton} {t('pcs')} / {t('carton')} | {unitDisplay}
                           </p>
                           <p className="text-[10px] text-amber-700 font-bold">
                             Total: {totalUnits} {t('pcs')}
@@ -221,7 +237,7 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                           </button>
                         </div>
                         <p className="font-black text-sm text-[#ea580c]">
-                          {lineTotal.toFixed(2)} € HT
+                          {isQuoteTier ? 'Sur devis' : `${lineTotal.toFixed(2).replace('.', ',')} € HT`}
                         </p>
                       </div>
                     </div>
@@ -239,9 +255,9 @@ export const QuoteCartDrawer: React.FC<QuoteCartDrawerProps> = ({
                   <span>Poids Brut Estimé:</span>
                   <strong className="text-[#013b22]">~{totalGrossWeightKg.toFixed(1)} kg</strong>
                 </div>
-                <div className="flex justify-between text-[#013b22] font-black text-sm border-t border-emerald-200 pt-2">
+                <div className="flex justify-between items-center text-[#013b22] font-black text-sm border-t border-emerald-200 pt-2">
                   <span>{t('estimatedTotalHT')}</span>
-                  <span className="text-[#ea580c] text-base">{totalEstimatedAmount.toFixed(2)} € HT</span>
+                  <span className="text-[#ea580c] text-lg font-black">{formattedTotalDisplay}</span>
                 </div>
               </div>
 

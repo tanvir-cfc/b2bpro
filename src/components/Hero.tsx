@@ -2,16 +2,11 @@ import React from 'react';
 import { 
   ArrowRight, 
   FileText, 
-  Leaf, 
-  Award, 
-  Tag, 
-  Truck, 
   MessageSquare 
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-import FULLWIDTH_HERO_BG from '../assets/images/fullwidth_hero_banner_1786003482343.jpg';
-import MOBILE_HERO_BG from '../assets/images/mobile_hero_bg_1786014705878.jpg';
+import FULLWIDTH_HERO_BG from '../assets/images/fullwidth_hero_banner_1786003482343.png';
 
 interface HeroProps {
   onOpenQuoteForm: () => void;
@@ -26,36 +21,25 @@ export const Hero: React.FC<HeroProps> = ({
   const { t } = useLanguage();
 
   return (
-    <section className="relative bg-[#04140b] text-white overflow-hidden py-8 sm:py-12 lg:py-20 border-b border-emerald-900/60 min-h-[520px] sm:min-h-[580px] flex flex-col justify-between">
+    <section className="relative bg-[#04140b] text-white overflow-hidden py-4 sm:py-12 lg:py-20 border-b border-emerald-900/60 min-h-0 sm:min-h-[580px] flex flex-col justify-between">
       
-      {/* Desktop Background Image (Hidden on small mobile) */}
-      <div className="hidden sm:block absolute inset-0 z-0">
+      {/* Full Width Hero Background Image (Desktop & Mobile) */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <img 
           src={FULLWIDTH_HERO_BG} 
           alt="SenTollBi Full Width Hero Banner" 
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-[82%_center] sm:object-center md:object-[75%_center] lg:object-center transition-all duration-300"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#031109] via-[#031109]/85 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#031109] via-transparent to-[#031109]/40"></div>
+        {/* Subtle dark gradient overlay ONLY on the text area (left side) so text is 100% readable while the product pouches on the right remain 100% crisp and un-dimmed */}
+        <div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-[#031109]/95 via-[#031109]/80 to-transparent"></div>
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#04140b] to-transparent"></div>
       </div>
 
-      {/* Dedicated Mobile Background Image (Edge-to-edge background on mobile) */}
-      <div className="block sm:hidden absolute inset-0 z-0">
-        <img 
-          src={MOBILE_HERO_BG} 
-          alt="SenTollBi Mobile Hero Banner" 
-          referrerPolicy="no-referrer"
-          className="w-full h-full object-cover object-center scale-105"
-        />
-        {/* Subtle, rich dark gradient overlays for maximum contrast and readability without blocking the imagery */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020d06]/80 via-[#031109]/70 to-[#020d06]/95"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full my-auto py-6 sm:py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full my-auto py-2 sm:py-4">
         
         {/* Overlaid Hero Content (Mobile & Desktop) */}
-        <div className="max-w-2xl text-left space-y-4 sm:space-y-6">
+        <div className="max-w-2xl text-left space-y-3 sm:space-y-6">
           
           <div className="inline-flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-400/40 px-3 py-1 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest backdrop-blur-sm shadow-md">
             <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
@@ -77,63 +61,24 @@ export const Hero: React.FC<HeroProps> = ({
           </p>
 
           {/* Overlaid Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
+          <div className="flex flex-row items-center gap-2 sm:gap-4 pt-2">
             <button
               type="button"
               onClick={onOpenQuoteForm}
-              className="bg-[#d97706] hover:bg-[#b45309] text-white px-6 py-3.5 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all shadow-2xl border border-amber-400/40 active:scale-95"
+              className="flex-1 sm:flex-initial bg-[#d97706] hover:bg-[#b45309] text-white px-2.5 sm:px-6 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl font-black text-[10px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-1 sm:gap-2 cursor-pointer transition-all shadow-2xl border border-amber-400/40 active:scale-95 whitespace-nowrap"
             >
               <span>{t('demanderDevis') || 'REQUEST A QUOTE'}</span>
-              <FileText className="w-4 h-4 text-amber-100" />
+              <FileText className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-100 shrink-0" />
             </button>
 
             <button
               type="button"
               onClick={onOpenCatalog}
-              className="bg-emerald-950/80 hover:bg-emerald-900 border-2 border-emerald-400/60 hover:border-white text-emerald-100 px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-all backdrop-blur-md shadow-xl active:scale-95"
+              className="flex-1 sm:flex-initial bg-emerald-950/80 hover:bg-emerald-900 border sm:border-2 border-emerald-400/60 hover:border-white text-emerald-100 px-2.5 sm:px-6 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl font-bold text-[10px] sm:text-xs uppercase tracking-wider flex items-center justify-center gap-1 sm:gap-2 cursor-pointer transition-all backdrop-blur-md shadow-xl active:scale-95 whitespace-nowrap"
             >
               <span>{t('viewCatalogue') || 'VIEW CATALOGUE'}</span>
-              <ArrowRight className="w-4 h-4 text-amber-400" />
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400 shrink-0" />
             </button>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Bottom Hero 4 Badges Bar matching reference image */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full pt-6 sm:pt-8 mt-4 sm:mt-8 border-t border-emerald-900/60">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 text-left">
-          
-          <div className="flex items-center gap-2.5 sm:gap-3 bg-[#03140a]/85 border border-emerald-800/80 p-2.5 sm:p-3 rounded-xl backdrop-blur-md shadow-md">
-            <Leaf className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
-            <div>
-              <p className="text-[11px] sm:text-xs font-black uppercase text-white">{t('badge100Natural') || '100% NATURAL'}</p>
-              <p className="text-[10px] sm:text-[11px] text-emerald-300 font-medium">{t('badgeNoAdditives') || 'No additives'}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2.5 sm:gap-3 bg-[#03140a]/85 border border-emerald-800/80 p-2.5 sm:p-3 rounded-xl backdrop-blur-md shadow-md">
-            <Award className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
-            <div>
-              <p className="text-[11px] sm:text-xs font-black uppercase text-white">{t('badgePremiumQuality') || 'PREMIUM QUALITY'}</p>
-              <p className="text-[10px] sm:text-[11px] text-emerald-300 font-medium">{t('badgeCarefullySelected') || 'Carefully selected'}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2.5 sm:gap-3 bg-[#03140a]/85 border border-emerald-800/80 p-2.5 sm:p-3 rounded-xl backdrop-blur-md shadow-md">
-            <Tag className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
-            <div>
-              <p className="text-[11px] sm:text-xs font-black uppercase text-white">{t('badgeWholesale') || 'B2B WHOLESALE'}</p>
-              <p className="text-[10px] sm:text-[11px] text-emerald-300 font-medium">{t('badgeBestPrices') || 'Best prices'}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2.5 sm:gap-3 bg-[#03140a]/85 border border-emerald-800/80 p-2.5 sm:p-3 rounded-xl backdrop-blur-md shadow-md">
-            <Truck className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400 shrink-0" />
-            <div>
-              <p className="text-[11px] sm:text-xs font-black uppercase text-white">{t('badgeFastDelivery') || 'FAST DELIVERY'}</p>
-              <p className="text-[10px] sm:text-[11px] text-emerald-300 font-medium">{t('badgeToAllEurope') || 'To all Europe'}</p>
-            </div>
           </div>
 
         </div>

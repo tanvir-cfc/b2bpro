@@ -3,7 +3,6 @@ import { Product, Category } from '../types';
 import { 
   Eye, 
   PlusCircle, 
-  Search, 
   Sparkles, 
   Check, 
   Package,
@@ -75,15 +74,15 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header matching screenshot */}
-        <div className="text-center max-w-3xl mx-auto mb-8">
+        <div className="text-center max-w-3xl mx-auto mb-6">
           <p className="text-xs font-black uppercase tracking-widest text-[#d97706] mb-1">
             {t('ourProductRange') || 'OUR PRODUCT RANGE'}
           </p>
           <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#0b2416] tracking-tight">
-            {t('premiumAfricanProductsTitle') || 'Premium African Products'}
+            {t('premiumAfricanProductsTitle') || 'Produits Africains de Qualité'}
           </h2>
           <p className="text-gray-600 text-sm mt-1 font-medium">
-            {t('premiumAfricanProductsSubtitle') || 'Carefully selected natural products, perfect for your business.'}
+            Tarifs B2B Officiels – Vente par carton & palette en Europe
           </p>
           <div className="w-16 h-1 bg-[#d97706] mx-auto mt-3 rounded-full"></div>
         </div>
@@ -97,10 +96,10 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
         )}
 
         {/* Filter Bar */}
-        <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-sm mb-8 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-sm mb-8 flex justify-center items-center">
           
           {/* Categories Tabs - Horizontally scrollable on mobile */}
-          <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 sm:pb-0 scrollbar-none touch-pan-x">
+          <div className="flex items-center gap-2 w-full justify-start md:justify-center overflow-x-auto pb-1 sm:pb-0 scrollbar-none touch-pan-x">
             {[
               { id: 'all', label: t('allProducts') },
               { id: 'pots', label: t('glassJarsFormat') },
@@ -120,18 +119,6 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                 {cat.label}
               </button>
             ))}
-          </div>
-
-          {/* Search Box */}
-          <div className="relative w-full md:w-64">
-            <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
-            <input
-              type="text"
-              placeholder={t('searchPlaceholder')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-300 rounded-xl text-xs font-medium focus:ring-2 focus:ring-[#0b2416] focus:outline-none"
-            />
           </div>
 
         </div>
@@ -185,28 +172,36 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
                     </p>
                   </div>
 
-                  {/* Tiered Price Table matching screenshot */}
+                  {/* Tiered Price Table matching Tariff document */}
                   <div className="bg-gray-50 rounded-xl p-2.5 border border-gray-200 text-xs">
-                    <div className="grid grid-cols-2 text-[10px] font-bold text-gray-500 uppercase border-b border-gray-200 pb-1 mb-1">
-                      <span>{t('quantity')}</span>
-                      <span className="text-right">{t('pricePerUnitExcl')}</span>
+                    <div className="grid grid-cols-3 text-[10px] font-bold text-gray-500 uppercase border-b border-gray-200 pb-1 mb-1">
+                      <span>{t('quantity') || 'Quantité'}</span>
+                      <span className="text-center">{t('pricePerUnitExcl') || 'Prix unitaire HT'}</span>
+                      <span className="text-right">Remise</span>
                     </div>
 
                     <div className="space-y-0.5 font-medium text-[11px]">
                       {product.tieredPricing.map((tier, idx) => {
                         const isApplicable = currentCartons >= tier.minQty && (tier.maxQty === null || currentCartons <= tier.maxQty);
+                        const displayPrice = tier.customPriceText 
+                          ? tier.customPriceText 
+                          : `${tier.pricePerUnit.toFixed(2).replace('.', ',')} €`;
+
                         return (
                           <div 
                             key={idx} 
-                            className={`grid grid-cols-2 py-0.5 px-1 rounded transition-colors ${
+                            className={`grid grid-cols-3 py-0.5 px-1 rounded transition-colors ${
                               isApplicable 
-                                ? 'bg-amber-100/80 font-black text-amber-950 border border-amber-300' 
+                                ? 'bg-emerald-800 text-white font-black shadow-xs' 
                                 : 'text-gray-700'
                             }`}
                           >
-                            <span>{tier.label}</span>
-                            <span className="text-right font-bold">
-                              {tier.pricePerUnit.toFixed(2)} €
+                            <span className="truncate">{tier.label}</span>
+                            <span className="text-center font-bold">
+                              {displayPrice}
+                            </span>
+                            <span className={`text-right font-medium text-[10px] ${isApplicable ? 'text-amber-300 font-bold' : 'text-gray-500'}`}>
+                              {tier.discount || '—'}
                             </span>
                           </div>
                         );

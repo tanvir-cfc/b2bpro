@@ -21,7 +21,7 @@ import { LanguageProvider } from './context/LanguageContext';
 function AppContent() {
   const [activeTab, setActiveTab] = useState('accueil');
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('sentollbi_products_v3');
+    const saved = localStorage.getItem('sentollbi_products_v4');
     return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
   });
 
@@ -42,7 +42,7 @@ function AppContent() {
 
   // Sync state to local persistence
   useEffect(() => {
-    localStorage.setItem('sentollbi_products_v3', JSON.stringify(products));
+    localStorage.setItem('sentollbi_products_v4', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {

@@ -1,10 +1,12 @@
 export type Category = 'all' | 'pots' | 'sachets' | 'boissons' | 'epices' | 'confiserie';
 
 export interface TierPrice {
-  minQty: number; // e.g. 10
-  maxQty: number | null; // e.g. 29 or null for 120+
-  pricePerUnit: number; // e.g. 6.90
-  label: string; // e.g. "10 - 29 pots"
+  minQty: number; // e.g. 1
+  maxQty: number | null; // e.g. 10 or null for 46+
+  pricePerUnit: number; // e.g. 3.75
+  label: string; // e.g. "1 à 10 cartons"
+  discount?: string; // e.g. "—", "-10 %", "-15 %", "À négocier"
+  customPriceText?: string; // e.g. "Sur devis"
 }
 
 export interface Product {

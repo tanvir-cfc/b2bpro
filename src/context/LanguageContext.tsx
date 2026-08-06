@@ -155,20 +155,24 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     requestMddQuote: "DISCUTER D'UN PROJET MDD",
 
     // Value Props
-    vp1Title: "PARTENAIRE DE CONFIANCE",
-    vp1Sub: "Des entreprises européennes",
-    vp2Title: "CERTIFIÉ QUALITÉ",
-    vp2Sub: "Normes internationales HACCP",
-    vp3Title: "HAUTE CAPACITÉ DE PRODUCTION",
-    vp3Sub: "Jusqu'à 20 000+ bocaux par jour",
-    vp4Title: "PAIEMENT SÉCURISÉ",
-    vp4Sub: "Options sûres et flexibles",
-    vp5Title: "SUPPORT DOCUMENTAIRE",
-    vp5Sub: "Documents d'exportation fournis",
+    vp1Title: "100% NATUREL",
+    vp1Sub: "Sans additifs",
+    vp2Title: "QUALITÉ SUPÉRIEURE",
+    vp2Sub: "Soigneusement sélectionnés",
+    vp3Title: "VENTE EN GROS B2B",
+    vp3Sub: "Meilleurs prix",
+    vp4Title: "LIVRAISON RAPIDE",
+    vp4Sub: "Dans toute l'Europe",
 
-    // Why Choose Us
+    // Why Choose Us & Mission
     whyTitle: "POURQUOI CHOISIR SENTOLL BI DISTRIBUTION ?",
     whySubtitle: "Votre passerelle de confiance pour les produits africains authentiques en Europe.",
+    ourMission: "NOTRE MISSION",
+    missionTitleLine1: "DE L'AFRIQUE À",
+    missionTitleLine2: "L'EUROPE AVEC",
+    missionTitleLine3: "EXCELLENCE",
+    missionSubtitle: "Bâtir des partenariats solides et transparents entre les producteurs africains et les entreprises européennes pour une croissance commerciale durable.",
+    missionConnectingText: "CONNECTER DAKAR ET L'EUROPE AU QUOTIDIEN",
     whyPillar1Title: "SOURCING DIRECT",
     whyPillar1Desc: "Approvisionné directement auprès de producteurs locaux de confiance en Afrique de l'Ouest.",
     whyPillar2Title: "QUALITÉ SUPÉRIEURE",
@@ -337,6 +341,16 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     whiteLabelSubtitle: "We manufacture, package and customize labels tailored to your store network or custom brand.",
     requestMddQuote: "DISCUSS PRIVATE LABEL PROJECT",
 
+    // Why Choose Us & Mission
+    whyTitle: "WHY CHOOSE SENTOLL BI DISTRIBUTION ?",
+    whySubtitle: "Your reliable gateway for authentic African products in Europe.",
+    ourMission: "OUR MISSION",
+    missionTitleLine1: "FROM AFRICA TO",
+    missionTitleLine2: "EUROPE WITH",
+    missionTitleLine3: "EXCELLENCE",
+    missionSubtitle: "Building strong, transparent partnerships between African producers and European businesses for sustainable and long-term commercial growth.",
+    missionConnectingText: "CONNECTING DAKAR & EUROPE DAILY",
+
     // Maad Flagship
     bestsellerTag: "BEST SELLER",
     maadTitle: "MAAD – OUR FLAGSHIP PRODUCT",
@@ -494,6 +508,16 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     whiteLabelSubtitle: "Creamos, envasamos y personalizamos las etiquetas para su cadena de tiendas.",
     requestMddQuote: "PROYECTO MARCA BLANCA",
 
+    // Why Choose Us & Mission
+    whyTitle: "WHY CHOOSE SENTOLL BI DISTRIBUTION ?",
+    whySubtitle: "Su pasarela de confianza para productos africanos auténticos en Europa.",
+    ourMission: "NUESTRA MISIÓN",
+    missionTitleLine1: "DE ÁFRICA A",
+    missionTitleLine2: "EUROPA CON",
+    missionTitleLine3: "EXCELENCIA",
+    missionSubtitle: "Construyendo alianzas sólidas y transparentes entre productores africanos y empresas europeas para un crecimiento comercial sostenible.",
+    missionConnectingText: "CONECTANDO DAKAR Y EUROPA DIARIAMENTE",
+
     // Maad Flagship
     bestsellerTag: "MÁS VENDIDO",
     maadTitle: "MAAD – NUESTRO PRODUCTO ESTRELLA",
@@ -650,6 +674,16 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     whiteLabelTitle: "Ihre Produkte Unter Eigner Marke",
     whiteLabelSubtitle: "Wir produzieren, verpacken und etikettieren nach Ihren Wünschen für Ihre Filialen.",
     requestMddQuote: "EIGENMARKEN-PROJEKT BESPRECHEN",
+
+    // Why Choose Us & Mission
+    whyTitle: "WARUM SENTOLL BI DISTRIBUTION WÄHLEN?",
+    whySubtitle: "Ihr zuverlässiges Tor für authentische afrikanische Produkte in Europa.",
+    ourMission: "UNSERE MISSION",
+    missionTitleLine1: "VON AFRIKA NACH",
+    missionTitleLine2: "EUROPA MIT",
+    missionTitleLine3: "EXZELLENZ",
+    missionSubtitle: "Aufbau starker, transparenter Partnerschaften zwischen afrikanischen Erzeugern und europäischen Unternehmen für nachhaltiges Wachstum.",
+    missionConnectingText: "TÄGLICHE DAKAR & EUROPA VERBINDUNG",
 
     // Maad Flagship
     bestsellerTag: "BESTSELLER",

@@ -159,7 +159,7 @@ export const MaadFlagship: React.FC<MaadFlagshipProps> = ({
               </div>
 
               {/* 2x2 grid on mobile, stacked list on desktop */}
-              <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4 mb-4">
                 
                 {/* Origin */}
                 <div className="flex items-start gap-2.5 pb-2 lg:pb-3 border-b-0 lg:border-b border-emerald-900/60">
@@ -195,7 +195,7 @@ export const MaadFlagship: React.FC<MaadFlagshipProps> = ({
                       {t('specMoqLabel') || 'MOQ'}
                     </p>
                     <p className="text-xs font-extrabold text-white">
-                      {t('specMoqVal') || '1 pallet'}
+                      30 pcs / carton
                     </p>
                   </div>
                 </div>
