@@ -54,16 +54,7 @@ export const MissionSection: React.FC = () => {
                   {t('missionSubtitle') || 'Building strong, transparent partnerships between African producers and European businesses for sustainable and long-term commercial growth.'}
                 </p>
 
-                {/* Bottom Divider & Pulse Indicator */}
-                <div className="pt-6 mt-8 border-t border-emerald-800/70 flex items-center gap-3">
-                  <span className="relative flex h-3.5 w-3.5 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-amber-400 shadow-[0_0_12px_#f59e0b]"></span>
-                  </span>
-                  <p className="text-amber-400 font-extrabold text-xs sm:text-sm uppercase tracking-[0.18em] drop-shadow-sm">
-                    {t('missionConnectingText') || 'CONNECTING DAKAR & EUROPE DAILY'}
-                  </p>
-                </div>
+
 
               </div>
 

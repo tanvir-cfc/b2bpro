@@ -10,10 +10,8 @@ export interface LanguageOption {
 }
 
 export const LANGUAGES: LanguageOption[] = [
-  { code: 'fr', name: 'Français', flag: '🇫🇷', label: 'Français (FR)' },
-  { code: 'en', name: 'English', flag: '🇬🇧', label: 'English (EN)' },
-  { code: 'es', name: 'Español', flag: '🇪🇸', label: 'Español (ES)' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪', label: 'Deutsch (DE)' }
+  { code: 'fr', name: 'Français', flag: '🇫🇷', label: 'Français (France)' },
+  { code: 'en', name: 'English', flag: '🇬🇧', label: 'English' }
 ];
 
 export const translations: Record<LanguageCode, Record<string, string>> = {
@@ -67,7 +65,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     badgeToAllEurope: "Dans toute l'Europe",
     whatsappContact: "Contactez-nous sur WhatsApp",
     ourProductRange: "NOTRE GAMME DE PRODUITS",
-    premiumAfricanProductsTitle: "Produits Africains de Qualité",
+    premiumAfricanProductsTitle: "De l’Afrique jusqu’aux rayons européens.",
     premiumAfricanProductsSubtitle: "Produits naturels soigneusement sélectionnés, parfaits pour votre entreprise.",
 
     // Catalog
@@ -254,7 +252,7 @@ export const translations: Record<LanguageCode, Record<string, string>> = {
     badgeToAllEurope: "To all Europe",
     whatsappContact: "Contact us on WhatsApp",
     ourProductRange: "OUR PRODUCT RANGE",
-    premiumAfricanProductsTitle: "Premium African Products",
+    premiumAfricanProductsTitle: "From Africa to European Shelves",
     premiumAfricanProductsSubtitle: "Carefully selected natural products, perfect for your business.",
 
     // Catalog

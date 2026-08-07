@@ -93,10 +93,10 @@ export const Logo: React.FC<LogoProps> = ({
   }, [logoSrc, isDarkBg]);
 
   const sizeHeights = {
-    sm: 'h-8',
-    md: 'h-11',
-    lg: 'h-14',
-    xl: 'h-16'
+    sm: 'h-10',
+    md: 'h-14 sm:h-16',
+    lg: 'h-18 sm:h-20',
+    xl: 'h-22 sm:h-24'
   };
 
   const displaySrc = processedLogo || logoSrc;

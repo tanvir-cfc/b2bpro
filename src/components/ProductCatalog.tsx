@@ -79,7 +79,7 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             {t('ourProductRange') || 'OUR PRODUCT RANGE'}
           </p>
           <h2 className="text-2xl sm:text-3xl font-black uppercase text-[#0b2416] tracking-tight">
-            {t('premiumAfricanProductsTitle') || 'Produits Africains de Qualité'}
+            {t('premiumAfricanProductsTitle') || 'De l’Afrique jusqu’aux rayons européens.'}
           </h2>
           <p className="text-gray-600 text-sm mt-1 font-medium">
             Tarifs B2B Officiels – Vente par carton & palette en Europe
@@ -94,34 +94,6 @@ export const ProductCatalog: React.FC<ProductCatalogProps> = ({
             <span>{addedNotice}</span>
           </div>
         )}
-
-        {/* Filter Bar */}
-        <div className="bg-white p-3 sm:p-4 rounded-2xl border border-gray-200 shadow-sm mb-8 flex justify-center items-center">
-          
-          {/* Categories Tabs - Horizontally scrollable on mobile */}
-          <div className="flex items-center gap-2 w-full justify-start md:justify-center overflow-x-auto pb-1 sm:pb-0 scrollbar-none touch-pan-x">
-            {[
-              { id: 'all', label: t('allProducts') },
-              { id: 'pots', label: t('glassJarsFormat') },
-              { id: 'sachets', label: t('sachetsDoypacks') },
-              { id: 'boissons', label: t('drinksPowders') },
-              { id: 'epices', label: t('spicesCoffee') }
-            ].map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id as Category)}
-                className={`px-3.5 py-2 rounded-xl text-xs font-black uppercase tracking-wider shrink-0 transition-all cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'bg-[#0b2416] text-amber-400 shadow-md border border-emerald-900'
-                    : 'bg-gray-50 text-gray-700 border border-gray-200 hover:bg-gray-100 font-bold'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </div>
-
-        </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
